@@ -18,7 +18,6 @@ Todas as mudanças relevantes deste projeto. O formato segue o [Keep a Changelog
 
 - Mocks WireMock da Calculadora de Tributos oficial e dos web services de NF-e 4.00 da SEFAZ (autorização, status, rejeições da Reforma Tributária, SEFAZ lenta e fora do ar), com testes de integração no CI.
 - Publicação no Packagist.
-
 - Cronograma de transição 2026-2033 com fundamento legal (`Transicao\Cronograma`).
 - Base de cálculo unificada da NF-e e da NFC-e (`BaseCalculo\CalculadoraBaseCalculo`).
 - Tabelas de CST e cClassTrib do IBS/CBS e do IS, base V0073 da calculadora oficial (09/11/2026).
