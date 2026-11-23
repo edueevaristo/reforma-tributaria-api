@@ -2,7 +2,7 @@
   "priority": 5,
   "request": {
     "method": "POST",
-    "urlPathPattern": "/sefaz/(autorizado|lento|rejeicao-[0-9]{4})/NFeStatusServico4"
+    "urlPathPattern": "/sefaz/[a-z0-9-]+/NFeStatusServico4"
   },
   "response": {
     "status": 200,

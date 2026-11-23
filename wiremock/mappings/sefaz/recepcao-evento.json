@@ -1,0 +1,17 @@
+{
+  "priority": 5,
+  "request": {
+    "method": "POST",
+    "urlPathPattern": "/sefaz/[a-z0-9-]+/NFeRecepcaoEvento4"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/soap+xml; charset=utf-8"
+    },
+    "bodyFileName": "sefaz/nfe-recepcao-evento.xml",
+    "transformers": [
+      "response-template"
+    ]
+  }
+}

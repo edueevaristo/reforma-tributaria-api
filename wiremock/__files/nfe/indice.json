@@ -1,0 +1,78 @@
+{
+    "exemplos": [
+        {
+            "nome": "venda",
+            "descricao": "Venda de mercadoria tributada integralmente (CST 000)",
+            "modelo": 55,
+            "finNFe": 1,
+            "chave": "35261111222333000181550010000010011079269192",
+            "xml": "/exemplos/nfe/xml/venda.xml",
+            "soap": "/exemplos/nfe/soap/venda.xml",
+            "servico": "NFeAutorizacao4"
+        },
+        {
+            "nome": "venda-com-reducao",
+            "descricao": "Venda com reducao de 60% (CST 200, higiene pessoal - Anexo VIII)",
+            "modelo": 55,
+            "finNFe": 1,
+            "chave": "35261111222333000181550010000010021079348383",
+            "xml": "/exemplos/nfe/xml/venda-com-reducao.xml",
+            "soap": "/exemplos/nfe/soap/venda-com-reducao.xml",
+            "servico": "NFeAutorizacao4"
+        },
+        {
+            "nome": "venda-nfce",
+            "descricao": "Venda ao consumidor final em NFC-e (modelo 65)",
+            "modelo": 65,
+            "finNFe": 1,
+            "chave": "35261111222333000181650010000020011158459196",
+            "xml": "/exemplos/nfe/xml/venda-nfce.xml",
+            "soap": "/exemplos/nfe/soap/venda-nfce.xml",
+            "servico": "NFeAutorizacao4"
+        },
+        {
+            "nome": "devolucao",
+            "descricao": "Devolucao de venda (finNFe 4), referenciando a NF-e de venda",
+            "modelo": 55,
+            "finNFe": 4,
+            "chave": "35261111222333000181550010000010031079427574",
+            "xml": "/exemplos/nfe/xml/devolucao.xml",
+            "soap": "/exemplos/nfe/soap/devolucao.xml",
+            "servico": "NFeAutorizacao4"
+        },
+        {
+            "nome": "bonificacao",
+            "descricao": "Remessa em bonificacao sem IBS/CBS (CST 410, cClassTrib 410001)",
+            "modelo": 55,
+            "finNFe": 1,
+            "chave": "35261111222333000181550010000010041079506765",
+            "xml": "/exemplos/nfe/xml/bonificacao.xml",
+            "soap": "/exemplos/nfe/soap/bonificacao.xml",
+            "servico": "NFeAutorizacao4"
+        },
+        {
+            "nome": "transferencia",
+            "descricao": "Transferencia entre estabelecimentos do mesmo contribuinte (CST 410, cClassTrib 410002)",
+            "modelo": 55,
+            "finNFe": 1,
+            "chave": "35261111222333000181550010000010051079585956",
+            "xml": "/exemplos/nfe/xml/transferencia.xml",
+            "soap": "/exemplos/nfe/soap/transferencia.xml",
+            "servico": "NFeAutorizacao4"
+        },
+        {
+            "nome": "evento-cancelamento",
+            "descricao": "Cancelamento (110111) da NF-e de venda",
+            "chave": "35261111222333000181550010000010011079269192",
+            "soap": "/exemplos/nfe/soap/evento-cancelamento.xml",
+            "servico": "NFeRecepcaoEvento4"
+        },
+        {
+            "nome": "evento-carta-correcao",
+            "descricao": "Carta de correcao (110110) da NF-e de venda",
+            "chave": "35261111222333000181550010000010011079269192",
+            "soap": "/exemplos/nfe/soap/evento-carta-correcao.xml",
+            "servico": "NFeRecepcaoEvento4"
+        }
+    ]
+}

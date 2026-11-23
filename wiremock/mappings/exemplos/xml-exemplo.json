@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/exemplos/nfe/(xml|soap)/[a-z0-9-]+\\.xml"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/xml; charset=utf-8"
+    },
+    "bodyFileName": "nfe/{{request.pathSegments.[2]}}/{{request.pathSegments.[3]}}",
+    "transformers": [
+      "response-template"
+    ]
+  }
+}

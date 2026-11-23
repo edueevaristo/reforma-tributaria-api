@@ -1,8 +1,8 @@
 {
-  "priority": 5,
+  "priority": 1,
   "request": {
     "method": "POST",
-    "urlPath": "/sefaz/fora-do-ar/NFeStatusServico4"
+    "urlPathPattern": "/sefaz/fora-do-ar/[A-Za-z0-9]+"
   },
   "response": {
     "status": 503,
