@@ -3,7 +3,8 @@
 A pasta [`wiremock/`](../wiremock) tem mocks prontos para testar a emissão de NF-e com IBS e CBS sem depender de serviços externos:
 
 - **Calculadora de Tributos oficial** da Receita Federal (`/api/calculadora/...`), para testar o `CalculadoraOficial\Cliente` sem instalar Java nem subir a calculadora.
-- **Web services de NF-e 4.00 da SEFAZ** (`/sefaz/...`), para testar o seu emissor com autorização, as rejeições da Reforma Tributária, SEFAZ fora do ar e SEFAZ lenta.
+- **Web services de NF-e 4.00 da SEFAZ** (`/sefaz/...`), para testar o seu emissor com autorização, eventos, as rejeições da Reforma Tributária, SEFAZ fora do ar e SEFAZ lenta.
+- **XMLs de exemplo** de NF-e e NFC-e com IBS e CBS (`/exemplos/nfe/...`): venda, venda com redução, NFC-e, devolução, bonificação, transferência, cancelamento e carta de correção.
 
 Os mocks são simulações para desenvolvimento e testes automatizados. Eles não validam assinatura, schema nem regras de negócio da nota: o cenário é escolhido pela URL. Antes de produção, homologue no ambiente de homologação da SEFAZ e confira os cálculos na calculadora oficial.
 
@@ -64,7 +65,8 @@ O cenário vai na URL: `http://localhost:8089/sefaz/{cenario}/{servico}`.
 Serviços simulados:
 
 - `NFeAutorizacao4`: autorização síncrona (`indSinc = 1`). Devolve `retEnviNFe` com `cStat` 104 e o `protNFe`.
-- `NFeStatusServico4`: devolve `cStat` 107 (serviço em operação).
+- `NFeRecepcaoEvento4`: cancelamento (110111), carta de correção (110110) e outros eventos. Devolve `retEnvEvento` com `cStat` 128 e o evento com `cStat` 135 (evento registrado e vinculado a NF-e). Responde assim em qualquer cenário, menos `fora-do-ar`.
+- `NFeStatusServico4`: devolve `cStat` 107 (serviço em operação) em qualquer cenário, menos `fora-do-ar`.
 
 Cenários:
 
@@ -72,7 +74,7 @@ Cenários:
 |---|---|---|
 | `autorizado` | 100 | Autorizado o uso da NF-e |
 | `lento` | 100 | Igual ao `autorizado`, com 15 segundos de atraso, para testar timeout |
-| `fora-do-ar` | HTTP 503 | Página de erro, para testar contingência |
+| `fora-do-ar` | HTTP 503 | Página de erro em todos os serviços, para testar contingência |
 | `rejeicao-1023` | 1023 | Classificação Tributária do IBS/CBS informada inexistente |
 | `rejeicao-1024` | 1024 | Classificação Tributária do IBS e da CBS incompatível com o CST informado |
 | `rejeicao-1041` | 1041 | Valor do IBS da UF difere do calculado |
@@ -113,9 +115,110 @@ curl -s -X POST http://localhost:8089/sefaz/autorizado/NFeAutorizacao4 \
   --data-binary @lote-assinado.xml
 ```
 
+## XMLs de exemplo
+
+A pasta `wiremock/__files/nfe/` tem notas completas de NF-e 4.00 com os grupos `IBSCBS` e `IBSCBSTot`, no ambiente de homologação (`tpAmb` 2), com emissão em 20/11/2026 em São Paulo. Os valores de ICMS, PIS, COFINS, IBS e CBS batem entre si, e todas as notas passam no schema oficial completo da NF-e (o teste `XmlExemplosTest` confere isso).
+
+| Exemplo | O que é | IBS/CBS |
+|---|---|---|
+| `venda` | Venda de mercadoria (NF-e, finNFe 1, CFOP 5102) | CST 000, cClassTrib 000001 |
+| `venda-com-reducao` | Venda com um item de higiene pessoal e um item comum | CST 200, cClassTrib 200035 (redução de 60%) e CST 000 |
+| `venda-nfce` | Venda ao consumidor final em NFC-e (modelo 65, com `infNFeSupl`) | CST 200 e CST 000 |
+| `devolucao` | Devolução de venda (finNFe 4, tpNF 0, CFOP 1202) referenciando a NF-e `venda` em `NFref` | CST 000, cClassTrib 000001 |
+| `bonificacao` | Remessa em bonificação (CFOP 5910) | CST 410, cClassTrib 410001 (sem gIBSCBS) |
+| `transferencia` | Transferência entre estabelecimentos do mesmo contribuinte (CFOP 5152) | CST 410, cClassTrib 410002 (sem gIBSCBS) |
+| `evento-cancelamento` | Cancelamento (110111) da NF-e `venda` | Somente envelope SOAP |
+| `evento-carta-correcao` | Carta de correção (110110) da NF-e `venda` | Somente envelope SOAP |
+
+Cada exemplo existe em dois formatos:
+
+- `xml/{exemplo}.xml`: a NF-e (`<NFe>`), como você guardaria ou importaria no seu sistema.
+- `soap/{exemplo}.xml`: o envelope SOAP 1.2 completo (`enviNFe` ou `envEvento`), pronto para enviar à SEFAZ simulada.
+
+Sobre a assinatura: o `DigestValue` é o hash SHA-1 real do `infNFe`, então o protocolo devolvido pelo mock traz um `digVal` coerente. O `SignatureValue` e o certificado são fictícios, e uma SEFAZ real rejeitaria essas notas. Para usar uma delas na homologação de verdade, carregue o XML no seu emissor, troque o emitente pelos seus dados e assine com o seu certificado.
+
+### Baixando os XMLs pelo WireMock
+
+Com o WireMock no ar, os exemplos ficam disponíveis por HTTP:
+
+```bash
+# Lista de exemplos (nome, descricao, chave e caminhos)
+curl http://localhost:8089/exemplos/nfe
+
+# A NF-e de devolucao
+curl http://localhost:8089/exemplos/nfe/xml/devolucao.xml -o devolucao.xml
+
+# O envelope SOAP da NFC-e
+curl http://localhost:8089/exemplos/nfe/soap/venda-nfce.xml -o venda-nfce-soap.xml
+```
+
+### Enviando para a SEFAZ simulada
+
+Com curl, escolhendo o exemplo e o cenário:
+
+```bash
+# Venda autorizada
+curl -s -X POST http://localhost:8089/sefaz/autorizado/NFeAutorizacao4 \
+  -H 'Content-Type: application/soap+xml; charset=utf-8' \
+  --data-binary @wiremock/__files/nfe/soap/venda.xml
+
+# A mesma venda rejeitada por total de CBS divergente
+curl -s -X POST http://localhost:8089/sefaz/rejeicao-1091/NFeAutorizacao4 \
+  -H 'Content-Type: application/soap+xml; charset=utf-8' \
+  --data-binary @wiremock/__files/nfe/soap/venda.xml
+
+# Cancelamento da venda
+curl -s -X POST http://localhost:8089/sefaz/autorizado/NFeRecepcaoEvento4 \
+  -H 'Content-Type: application/soap+xml; charset=utf-8' \
+  --data-binary @wiremock/__files/nfe/soap/evento-cancelamento.xml
+```
+
+No PowerShell, troque as barras invertidas de continuação de linha por crase (`` ` ``) ou escreva o comando em uma linha só, e use `curl.exe` em vez de `curl`.
+
+Com o script PHP do projeto, que já mostra o resultado resumido:
+
+```bash
+php exemplos/enviar-wiremock.php                        # venda, cenario autorizado
+php exemplos/enviar-wiremock.php devolucao              # outro exemplo
+php exemplos/enviar-wiremock.php venda rejeicao-1091    # outro cenario
+php exemplos/enviar-wiremock.php evento-cancelamento    # eventos vao para NFeRecepcaoEvento4
+```
+
+Saída do primeiro comando:
+
+```
+POST http://localhost:8089/sefaz/autorizado/NFeAutorizacao4
+HTTP 200
+chNFe    35261111222333000181550010000010011079269192
+cStat    100
+xMotivo  Autorizado o uso da NF-e
+nProt    135xxxxxxxxxxxxx
+digVal   (DigestValue da nota enviada)
+```
+
+### Usando os XMLs nos seus testes
+
+Alguns usos comuns:
+
+- **Teste do seu leitor de XML**: importe `xml/venda.xml`, `xml/devolucao.xml` e `xml/venda-nfce.xml` e confira se o seu sistema lê os grupos `IBSCBS` e `IBSCBSTot`.
+- **Teste do fluxo de emissão**: envie o envelope `soap/` para o cenário `autorizado` e confira se o seu sistema grava o protocolo. Depois repita com `rejeicao-1091` e `fora-do-ar` para testar o tratamento de erro e a contingência.
+- **Teste de devolução**: emita a `venda`, depois envie a `devolucao`, que já referencia a chave da venda.
+- **Teste de cancelamento**: autorize a `venda` e envie o `evento-cancelamento`, que usa a mesma chave.
+
+### Gerando os XMLs de novo
+
+Os XMLs são gerados pela biblioteca. Para mudar valores, itens ou criar um tipo novo, edite a lista `$exemplos` em `bin/gerar-xml-exemplos.php` e rode:
+
+```bash
+php bin/gerar-xml-exemplos.php
+composer test
+```
+
+O teste `XmlExemplosTest` valida todos os XMLs contra o schema oficial da NF-e, confere o dígito verificador da chave, o `DigestValue` e o total da CBS.
+
 ## Testes de integração
 
-Os testes de `tests/Integracao` usam os mocks. Eles são ignorados quando a variável `WIREMOCK_URL` não está definida.
+Os testes de `tests/Integracao` usam os mocks e os XMLs de exemplo. Eles são ignorados quando a variável `WIREMOCK_URL` não está definida.
 
 ```bash
 docker compose -f wiremock/docker-compose.yml up -d

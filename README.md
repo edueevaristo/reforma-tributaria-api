@@ -197,7 +197,8 @@ Todas as exceções estendem `ReformaTributariaException`:
 A pasta [`wiremock/`](wiremock) traz mocks prontos para testar a emissão de NF-e sem serviços externos:
 
 - **Calculadora de Tributos oficial**: cálculo, observabilidade, base unificada, geração e validação de XML e consulta de cClassTrib, com cenários de sucesso e de erro.
-- **SEFAZ NF-e 4.00** (`NFeAutorizacao4` e `NFeStatusServico4`): nota autorizada, SEFAZ lenta, SEFAZ fora do ar e as rejeições da Reforma Tributária (1023, 1024, 1041, 1069, 1076, 1085, 1091, 1104, 1115 e 1150).
+- **SEFAZ NF-e 4.00** (`NFeAutorizacao4`, `NFeRecepcaoEvento4` e `NFeStatusServico4`): nota autorizada, eventos registrados, SEFAZ lenta, SEFAZ fora do ar e as rejeições da Reforma Tributária (1023, 1024, 1041, 1069, 1076, 1085, 1091, 1104, 1115 e 1150).
+- **XMLs de exemplo** com IBS e CBS, validados no schema oficial da NF-e: venda, venda com redução, NFC-e, devolução, bonificação, transferência, cancelamento e carta de correção.
 
 ```bash
 docker compose -f wiremock/docker-compose.yml up -d
@@ -208,9 +209,14 @@ curl -X POST http://localhost:8089/api/calculadora/regime-geral -H 'Content-Type
 # SEFAZ simulada: o cenario vai na URL
 # http://localhost:8089/sefaz/autorizado/NFeAutorizacao4
 # http://localhost:8089/sefaz/rejeicao-1091/NFeAutorizacao4
+
+# XMLs de exemplo: lista, download e envio
+curl http://localhost:8089/exemplos/nfe
+curl http://localhost:8089/exemplos/nfe/xml/devolucao.xml -o devolucao.xml
+php exemplos/enviar-wiremock.php devolucao autorizado
 ```
 
-O protocolo de autorização usa a chave e o `DigestValue` da nota enviada, então o seu emissor recebe um retorno coerente com o XML que mandou. Todos os cenários, como apontar o seu emissor para o mock e como criar cenários novos estão em [docs/wiremock.md](docs/wiremock.md).
+O protocolo de autorização usa a chave e o `DigestValue` da nota enviada, então o seu emissor recebe um retorno coerente com o XML que mandou. Todos os cenários, os XMLs de exemplo, como apontar o seu emissor para o mock e como criar cenários novos estão em [docs/wiremock.md](docs/wiremock.md).
 
 ## O que é calculado localmente
 

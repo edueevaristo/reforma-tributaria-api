@@ -4,6 +4,12 @@ Todas as mudanças relevantes deste projeto. O formato segue o [Keep a Changelog
 
 ## [Não publicado]
 
+### Adicionado
+
+- XMLs de exemplo de NF-e e NFC-e com IBS e CBS (venda, venda com redução, NFC-e, devolução, bonificação, transferência, cancelamento e carta de correção), validados no schema oficial e servidos pelo WireMock em `/exemplos/nfe`.
+- Mock do serviço `NFeRecepcaoEvento4` da SEFAZ.
+- Script `bin/gerar-xml-exemplos.php` e exemplo `exemplos/enviar-wiremock.php`.
+
 ## [0.1.0] - 2026-11-23
 
 ### Adicionado
