@@ -4,6 +4,8 @@ Todas as mudanças relevantes deste projeto. O formato segue o [Keep a Changelog
 
 ## [Não publicado]
 
+## [0.2.0] - 2026-11-23
+
 ### Adicionado
 
 - XMLs de exemplo de NF-e e NFC-e com IBS e CBS (venda, venda com redução, NFC-e, devolução, bonificação, transferência, cancelamento e carta de correção), validados no schema oficial e servidos pelo WireMock em `/exemplos/nfe`.
