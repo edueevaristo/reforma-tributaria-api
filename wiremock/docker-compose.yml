@@ -1,0 +1,13 @@
+# Mocks da Calculadora de Tributos oficial e dos web services de NF-e da SEFAZ.
+# Uso: docker compose -f wiremock/docker-compose.yml up -d
+# Documentacao: docs/wiremock.md
+services:
+  wiremock:
+    image: wiremock/wiremock:3.13.2
+    container_name: reforma-tributaria-wiremock
+    ports:
+      - "8089:8080"
+    volumes:
+      - ./mappings:/home/wiremock/mappings:ro
+      - ./__files:/home/wiremock/__files:ro
+    command: ["--verbose", "--disable-banner"]

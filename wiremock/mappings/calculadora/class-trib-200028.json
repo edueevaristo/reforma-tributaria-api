@@ -1,0 +1,13 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "GET",
+    "urlPath": "/api/calculadora/dados-abertos/classificacoes-tributarias/cbs-ibs/class-trib/200028",
+    "queryParameters": { "data": { "matches": "\\d{4}-\\d{2}-\\d{2}" } }
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "calculadora/class-trib-200028.json"
+  }
+}

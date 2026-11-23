@@ -1,0 +1,8 @@
+{
+  "request": { "method": "POST", "urlPath": "/api/calculadora/observabilidade/regime-geral" },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "calculadora/observabilidade.json"
+  }
+}

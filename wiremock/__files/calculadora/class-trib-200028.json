@@ -1,0 +1,16 @@
+{
+  "codigo": "200028",
+  "descricao": "Fornecimento dos serviços de educação (Anexo II)",
+  "tipoAliquota": "Padrão",
+  "nomenclatura": "NBS",
+  "possuiPercentualReducao": true,
+  "indicaApropriacaoCreditoAdquirenteCbs": true,
+  "indicaApropriacaoCreditoAdquirenteIbs": true,
+  "indicaCreditoPresumidoFornecedor": false,
+  "indicaCreditoPresumidoAdquirente": false,
+  "creditoOperacaoAntecedente": "Manutenção",
+  "percentualReducaoCbs": 60.00,
+  "percentualReducaoIbsUf": 60.00,
+  "percentualReducaoIbsMun": 60.00,
+  "dataAtualizacao": "2026-10-01"
+}

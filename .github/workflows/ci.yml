@@ -45,3 +45,37 @@ jobs:
 
       - name: PSR-12 e compatibilidade PHP 7.4+
         run: vendor/bin/phpcs
+
+  integracao:
+    name: integracao (WireMock)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: bcmath, dom, json, curl
+          coverage: none
+
+      - name: Instalar dependencias
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Subir WireMock
+        run: |
+          docker compose -f wiremock/docker-compose.yml up -d
+          for tentativa in $(seq 1 30); do
+            curl -sf http://localhost:8089/__admin/health && exit 0
+            sleep 2
+          done
+          docker compose -f wiremock/docker-compose.yml logs
+          exit 1
+
+      - name: Testes de integracao
+        env:
+          WIREMOCK_URL: http://localhost:8089
+        run: vendor/bin/phpunit --testsuite integracao
+
+      - name: Logs do WireMock
+        if: failure()
+        run: docker compose -f wiremock/docker-compose.yml logs

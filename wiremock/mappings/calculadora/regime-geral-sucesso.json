@@ -1,0 +1,9 @@
+{
+  "priority": 10,
+  "request": { "method": "POST", "urlPath": "/api/calculadora/regime-geral" },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "calculadora/regime-geral-sucesso.json"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "baseRG": 870.00,
+  "baseIS": 840.00,
+  "baseSN": 1060.00,
+  "avisos": [
+    "Campo vPIS não compõe as bases para o ano 2027 (vigência 2026–2026) e foi ignorado no cálculo",
+    "Campo vCOFINS não compõe as bases para o ano 2027 (vigência 2026–2026) e foi ignorado no cálculo"
+  ]
+}

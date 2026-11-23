@@ -1,0 +1,22 @@
+{
+  "priority": 5,
+  "request": {
+    "method": "POST",
+    "urlPath": "/sefaz/rejeicao-1085/NFeAutorizacao4"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/soap+xml; charset=utf-8"
+    },
+    "bodyFileName": "sefaz/nfe-autorizacao-protocolo.xml",
+    "transformers": [
+      "response-template"
+    ],
+    "transformerParameters": {
+      "autorizado": false,
+      "cStat": "1085",
+      "xMotivo": "Rejeição: Total do IBS difere da soma do vIBS dos itens"
+    }
+  }
+}

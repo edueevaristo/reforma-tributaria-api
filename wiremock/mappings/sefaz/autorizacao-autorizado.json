@@ -1,0 +1,22 @@
+{
+  "priority": 5,
+  "request": {
+    "method": "POST",
+    "urlPath": "/sefaz/autorizado/NFeAutorizacao4"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/soap+xml; charset=utf-8"
+    },
+    "bodyFileName": "sefaz/nfe-autorizacao-protocolo.xml",
+    "transformers": [
+      "response-template"
+    ],
+    "transformerParameters": {
+      "autorizado": true,
+      "cStat": "100",
+      "xMotivo": "Autorizado o uso da NF-e"
+    }
+  }
+}

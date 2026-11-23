@@ -1,0 +1,12 @@
+{
+  "priority": 10,
+  "request": {
+    "method": "GET",
+    "urlPathPattern": "/api/calculadora/dados-abertos/classificacoes-tributarias/cbs-ibs/class-trib/[0-9]+"
+  },
+  "response": {
+    "status": 404,
+    "headers": { "Content-Type": "application/problem+json" },
+    "bodyFileName": "calculadora/erro-404.json"
+  }
+}

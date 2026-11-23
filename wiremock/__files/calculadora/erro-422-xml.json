@@ -1,0 +1,7 @@
+{
+  "status": 422,
+  "title": "XML inválido",
+  "detail": "cvc-pattern-valid: Value '999' is not facet-valid with respect to pattern for type 'TCST'.",
+  "linha": 1,
+  "coluna": 120
+}

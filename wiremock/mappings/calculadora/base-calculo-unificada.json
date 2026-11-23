@@ -1,0 +1,8 @@
+{
+  "request": { "method": "POST", "urlPath": "/api/calculadora/base-calculo/base-calculo-unificada" },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "calculadora/base-calculo-unificada.json"
+  }
+}

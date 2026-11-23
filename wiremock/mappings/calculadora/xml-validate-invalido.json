@@ -1,0 +1,13 @@
+{
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "urlPath": "/api/calculadora/xml/validate",
+    "bodyPatterns": [ { "contains": "<CST>999</CST>" } ]
+  },
+  "response": {
+    "status": 422,
+    "headers": { "Content-Type": "application/problem+json" },
+    "bodyFileName": "calculadora/erro-422-xml.json"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "status": 422,
+  "code": "REG-011",
+  "title": "NCM não vinculada",
+  "pointer": "#/itens/0/ncm",
+  "detail": "NCM de código 00000000 não vinculada à Classificação Tributária informada (CBS e IBS)"
+}

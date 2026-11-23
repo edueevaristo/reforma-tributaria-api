@@ -1,0 +1,12 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPath": "/api/calculadora/xml/generate",
+    "queryParameters": { "tipo": { "equalTo": "nfe" } }
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/xml" },
+    "bodyFileName": "calculadora/xml-grupo-nfe.xml"
+  }
+}
