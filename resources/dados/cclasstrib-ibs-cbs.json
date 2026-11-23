@@ -1,0 +1,3298 @@
+{
+    "meta": {
+        "fonte": "Calculadora de Tributos - Regime Regular (Receita Federal do Brasil / Serpro), licenca MIT",
+        "repositorio": "https://github.com/ReceitaFederal/calculadora-rtc-regime-regular",
+        "versaoBaseDados": "V0073",
+        "dataBaseDados": "2026-11-09",
+        "descricao": "Nova tabela de Classificações Tributárias (IT 2025.002 v.1.71), publicada em 30/10/2026."
+    },
+    "dados": [
+        {
+            "codigo": "000001",
+            "cst": "000",
+            "descricao": "Situações tributadas integralmente pelo IBS e CBS.",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "000002",
+            "cst": "000",
+            "descricao": "Exploração de via",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS",
+            "anexo": "90111",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "000003",
+            "cst": "000",
+            "descricao": "Regime automotivo - projetos incentivados (art. 311)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "000004",
+            "cst": "000",
+            "descricao": "Regime automotivo - projetos incentivados (art. 312)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "000005",
+            "cst": "000",
+            "descricao": "Operação com EAC destinado à mistura com gasolina A, mas com saída do biocombustível com destinação diversa",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "000006",
+            "cst": "000",
+            "descricao": "Situações tributadas integralmente pelo IBS e CBS realizadas por autônomo",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "010001",
+            "cst": "010",
+            "descricao": "Operações do FGTS não realizadas pela Caixa Econômica Federal",
+            "tipoAliquota": "Uniforme setorial",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "010002",
+            "cst": "010",
+            "descricao": "Operações do serviço financeiro",
+            "tipoAliquota": "Uniforme setorial",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "011001",
+            "cst": "011",
+            "descricao": "Planos de assistência funerária.",
+            "tipoAliquota": "Uniforme nacional (referência)",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "011002",
+            "cst": "011",
+            "descricao": "Planos de assistência à saúde",
+            "tipoAliquota": "Uniforme nacional (referência)",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "011003",
+            "cst": "011",
+            "descricao": "Intermediação de planos de assistência à saúde",
+            "tipoAliquota": "Uniforme nacional (referência)",
+            "nomenclatura": "NBS",
+            "anexo": "92401",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "011004",
+            "cst": "011",
+            "descricao": "Concursos e prognósticos",
+            "tipoAliquota": "Uniforme nacional (referência)",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "011005",
+            "cst": "011",
+            "descricao": "Planos de assistência à saúde de animais domésticos",
+            "tipoAliquota": "Uniforme nacional (referência)",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 30.0,
+                "ibsUf": 30.0,
+                "ibsMun": 30.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200001",
+            "cst": "200",
+            "descricao": "Serviços de transporte de bens até as zonas de processamento de exportação e bens exportados a partir das zonas de processamento de exportação",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200002",
+            "cst": "200",
+            "descricao": "Fornecimento ou importação para produtor rural não contribuinte ou TAC",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "81971",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200003",
+            "cst": "200",
+            "descricao": "Vendas de produtos destinados à alimentação humana (Anexo I)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "1",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200004",
+            "cst": "200",
+            "descricao": "Fornecimento de dispositivos médicos (Anexo XII)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "12",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200005",
+            "cst": "200",
+            "descricao": "Fornecimento de dispositivos médicos para órgãos da administração pública e entidades de saúde imunes (Anexo IV)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "4",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200006",
+            "cst": "200",
+            "descricao": "Situação de emergência de saúde pública reconhecida pelo Poder público",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "12",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200007",
+            "cst": "200",
+            "descricao": "Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência (Anexo XIII)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "13",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200008",
+            "cst": "200",
+            "descricao": "Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência adquiridos por órgãos da administração pública (Anexo V)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "5",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200009",
+            "cst": "200",
+            "descricao": "Fornecimento dos medicamentos registrados na Anvisa",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200010",
+            "cst": "200",
+            "descricao": "Fornecimento dos medicamentos registrados na Anvisa, adquiridos por órgãos da administração pública",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200011",
+            "cst": "200",
+            "descricao": "Fornecimento das composições para nutrição enteral e parenteral quando adquiridas por órgãos da administração pública (Anexo VI)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "6",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200012",
+            "cst": "200",
+            "descricao": "Situação de emergência de saúde pública reconhecida pelo Poder público",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "12",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200013",
+            "cst": "200",
+            "descricao": "Fornecimento de tampões higiênicos, absorventes higiênicos internos ou externos",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200014",
+            "cst": "200",
+            "descricao": "Fornecimento dos produtos hortícolas, frutas e ovos (Anexo XV)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "15",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200015",
+            "cst": "200",
+            "descricao": "Venda de automóveis de passageiros de fabricação nacional adquiridos por motoristas profissionais ou pessoas com deficiência",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200016",
+            "cst": "200",
+            "descricao": "Prestação de serviços de pesquisa e desenvolvimento por Instituição Científica, Tecnológica e de Inovação (ICT)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS",
+            "anexo": "91561",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200017",
+            "cst": "200",
+            "descricao": "Operações relacionadas ao FGTS",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200018",
+            "cst": "200",
+            "descricao": "Operações de resseguro e retrocessão",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200019",
+            "cst": "200",
+            "descricao": "Importador dos serviços financeiros contribuinte",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200020",
+            "cst": "200",
+            "descricao": "Operação praticada por sociedades cooperativas optantes por regime específico do IBS e CBS",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200021",
+            "cst": "200",
+            "descricao": "Serviços de transporte público coletivo de passageiros ferroviário e hidroviário",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200022",
+            "cst": "200",
+            "descricao": "Operação originada fora da ZFM que destine bem material industrializado a contribuinte estabelecido na ZFM",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200023",
+            "cst": "200",
+            "descricao": "Operação realizada por indústria incentivada que destine bem material intermediário para outra indústria incentivada na ZFM",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200024",
+            "cst": "200",
+            "descricao": "Operação originada fora das Áreas de Livre Comércio destinadas a contribuinte estabelecido nas Áreas de Livre Comércio",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200025",
+            "cst": "200",
+            "descricao": "Fornecimento dos serviços de educação relacionados ao Programa Universidade para Todos (Prouni)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": "93081",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200026",
+            "cst": "200",
+            "descricao": "Locação de imóveis localizados nas zonas reabilitadas",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": "91581",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 80.0,
+                "ibsUf": 80.0,
+                "ibsMun": 80.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200027",
+            "cst": "200",
+            "descricao": "Operações de locação, cessão onerosa e arrendamento de bens imóveis",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": "92611",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 70.0,
+                "ibsUf": 70.0,
+                "ibsMun": 70.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200028",
+            "cst": "200",
+            "descricao": "Fornecimento dos serviços de educação (Anexo II)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS",
+            "anexo": "2",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200029",
+            "cst": "200",
+            "descricao": "Fornecimento dos serviços de saúde humana (Anexo III)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS",
+            "anexo": "3",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200030",
+            "cst": "200",
+            "descricao": "Venda dos dispositivos médicos (Anexo IV)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "4",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200031",
+            "cst": "200",
+            "descricao": "Fornecimento dos dispositivos de acessibilidade próprios para pessoas com deficiência (Anexo V)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "5",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200032",
+            "cst": "200",
+            "descricao": "Fornecimento dos medicamentos registrados na Anvisa ou produzidos por farmácias de manipulação, ressalvados os medicamentos sujeitos à alíquota zero",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200033",
+            "cst": "200",
+            "descricao": "Fornecimento das composições para nutrição enteral e parenteral (Anexo VI)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "6",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200034",
+            "cst": "200",
+            "descricao": "Fornecimento dos alimentos destinados ao consumo humano (Anexo VII)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "7",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200035",
+            "cst": "200",
+            "descricao": "Fornecimento dos produtos de higiene pessoal e limpeza (Anexo VIII)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "8",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200036",
+            "cst": "200",
+            "descricao": "Fornecimento de produtos agropecuários, aquícolas, pesqueiros, florestais e extrativistas vegetais in natura",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200037",
+            "cst": "200",
+            "descricao": "Fornecimento de serviços ambientais de conservação ou recuperação da vegetação nativa",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200038",
+            "cst": "200",
+            "descricao": "Fornecimento dos insumos agropecuários e aquícolas (Anexo IX)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": "9",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200039",
+            "cst": "200",
+            "descricao": "Fornecimento dos bens e serviços relacionados com produções nacionais artísticas, culturais, de eventos, jornalísticas e audiovisuais (Anexo X)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": "10",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200040",
+            "cst": "200",
+            "descricao": "Fornecimento de serviços de comunicação institucional à administração pública",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200041",
+            "cst": "200",
+            "descricao": "Fornecimento de serviço de educação desportiva (art. 141. I)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200042",
+            "cst": "200",
+            "descricao": "Fornecimento de serviço de gestão e exploração do desporto (art. 141. II)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200043",
+            "cst": "200",
+            "descricao": "Fornecimento à administração pública dos serviços e dos bens relativos à soberania (Anexo XI)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": "11",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200044",
+            "cst": "200",
+            "descricao": "Operações e prestações de serviços de segurança da informação e segurança cibernética desenvolvidos por sociedade que tenha sócio brasileiro (Anexo XI)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": "11",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200045",
+            "cst": "200",
+            "descricao": "Operações relacionadas a projetos de reabilitação urbana de zonas históricas e de áreas críticas de recuperação e reconversão urbanística",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": "",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200046",
+            "cst": "200",
+            "descricao": "Operações com bens imóveis",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 50.0,
+                "ibsUf": 50.0,
+                "ibsMun": 50.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200047",
+            "cst": "200",
+            "descricao": "Bares e Restaurantes",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 40.0,
+                "ibsUf": 40.0,
+                "ibsMun": 40.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200048",
+            "cst": "200",
+            "descricao": "Hotelaria, Parques de Diversão e Parques Temáticos",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": "92811",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 40.0,
+                "ibsUf": 40.0,
+                "ibsMun": 40.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200049",
+            "cst": "200",
+            "descricao": "Transporte coletivo de passageiros rodoviário, ferroviário e hidroviário",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 40.0,
+                "ibsUf": 40.0,
+                "ibsMun": 40.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200050",
+            "cst": "200",
+            "descricao": "Serviços de transporte aéreo regional coletivo de passageiros ou de carga",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 40.0,
+                "ibsUf": 40.0,
+                "ibsMun": 40.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200051",
+            "cst": "200",
+            "descricao": "Agências de Turismo",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 40.0,
+                "ibsUf": 40.0,
+                "ibsMun": 40.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200052",
+            "cst": "200",
+            "descricao": "Prestação de serviços de profissões intelectuais",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": "91271",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 30.0,
+                "ibsUf": 30.0,
+                "ibsMun": 30.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200053",
+            "cst": "200",
+            "descricao": "Fornecimento de medicamentos registrados na Anvisa, quando  classificados como soros ou vacinas",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200054",
+            "cst": "200",
+            "descricao": "Fornecimento de bem material pela cooperativa de produção agropecuária a associado não sujeito ao regime regular do IBS e da CBS",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "200055",
+            "cst": "200",
+            "descricao": "Fornecimento dos serviços com redução de alíquota de 60% realizado por autônomo",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "200056",
+            "cst": "200",
+            "descricao": "Fornecimento dos serviços com redução de alíquota de 30% realizado por autônomo",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": "91271",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 30.0,
+                "ibsUf": 30.0,
+                "ibsMun": 30.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "220001",
+            "cst": "220",
+            "descricao": "Incorporação imobiliária submetida ao regime especial de tributação",
+            "tipoAliquota": "Fixa",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": "2026-01-01",
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "220002",
+            "cst": "220",
+            "descricao": "Incorporação imobiliária submetida ao regime especial de tributação",
+            "tipoAliquota": "Fixa",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": "2026-01-01",
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "220003",
+            "cst": "220",
+            "descricao": "Alienação de imóvel decorrente de parcelamento do solo",
+            "tipoAliquota": "Fixa",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": "2026-01-01",
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "221001",
+            "cst": "221",
+            "descricao": "Locação, cessão onerosa ou arrendamento de bem imóvel com alíquota sobre a receita bruta",
+            "tipoAliquota": "Fixa",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": "94871",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "221002",
+            "cst": "221",
+            "descricao": "Incorporação imobiliária submetida ao regime especial de tributação",
+            "tipoAliquota": "Fixa",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "221003",
+            "cst": "221",
+            "descricao": "Incorporação imobiliária submetida ao regime especial de tributação",
+            "tipoAliquota": "Fixa",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "221004",
+            "cst": "221",
+            "descricao": "Alienação de imóvel decorrente de parcelamento do solo",
+            "tipoAliquota": "Fixa",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "222001",
+            "cst": "222",
+            "descricao": "Transporte internacional de passageiros, caso os trechos de ida e volta sejam vendidos em conjunto",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "400001",
+            "cst": "400",
+            "descricao": "Fornecimento de serviços de transporte público coletivo de passageiros rodoviário e metroviário",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "400002",
+            "cst": "400",
+            "descricao": "Fornecimento de serviços de transporte público coletivo de passageiros rodoviário e metroviário com medição por quilômetro rodado",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "400003",
+            "cst": "400",
+            "descricao": "Bagagens",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "400004",
+            "cst": "400",
+            "descricao": "Remessas internacionais",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410001",
+            "cst": "410",
+            "descricao": "Fornecimento de bonificações quando constem no documento fiscal e que não dependam de evento posterior",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410002",
+            "cst": "410",
+            "descricao": "Transferências entre estabelecimentos pertencentes ao mesmo contribuinte",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410003",
+            "cst": "410",
+            "descricao": "Doações e amostras grátis sem contraprestação em benefício do doador",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410004",
+            "cst": "410",
+            "descricao": "Exportações de bens e serviços",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410005",
+            "cst": "410",
+            "descricao": "Fornecimentos realizados pela União, pelos Estados, pelo Distrito Federal e pelos Municípios",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410006",
+            "cst": "410",
+            "descricao": "Fornecimentos realizados por entidades religiosas e templos de qualquer culto",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410007",
+            "cst": "410",
+            "descricao": "Fornecimentos realizados por partidos políticos, entidades sindicais e instituições de educação e de assistência social",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410008",
+            "cst": "410",
+            "descricao": "Fornecimentos de livros, jornais, periódicos e do papel destinado a sua impressão",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410009",
+            "cst": "410",
+            "descricao": "Fornecimentos de fonogramas e videofonogramas musicais produzidos no Brasil",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410010",
+            "cst": "410",
+            "descricao": "Fornecimentos de serviço de comunicação nas modalidades de radiodifusão sonora e de sons e imagens de recepção livre e gratuita",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410011",
+            "cst": "410",
+            "descricao": "Fornecimentos de ouro, quando definido em lei como ativo financeiro ou instrumento cambial",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410012",
+            "cst": "410",
+            "descricao": "Fornecimento de condomínio edilício não optante pelo regime regular",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410013",
+            "cst": "410",
+            "descricao": "Exportações de combustíveis",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410014",
+            "cst": "410",
+            "descricao": "Fornecimento de produtor rural não contribuinte",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410015",
+            "cst": "410",
+            "descricao": "Fornecimento por transportador autônomo não contribuinte",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410016",
+            "cst": "410",
+            "descricao": "Fornecimento ou aquisição de resíduos sólidos",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410017",
+            "cst": "410",
+            "descricao": "Aquisição de bem móvel com crédito presumido sob condição de revenda realizada",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410018",
+            "cst": "410",
+            "descricao": "Operações relacionadas aos fundos garantidores e executores de políticas públicas",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410019",
+            "cst": "410",
+            "descricao": "Exclusão da gorjeta na base de cálculo no fornecimento de alimentação",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410020",
+            "cst": "410",
+            "descricao": "Exclusão do valor de intermediação na base de cálculo no fornecimento de alimentação",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410021",
+            "cst": "410",
+            "descricao": "Contribuição de que trata o art. 149-A da Constituição Federal",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410022",
+            "cst": "410",
+            "descricao": "Consolidação da propriedade do bem pelo credor",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410023",
+            "cst": "410",
+            "descricao": "Alienação de bens móveis ou imóveis que tenham sido objeto de garantia em que o prestador da garantia não seja contribuinte",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410024",
+            "cst": "410",
+            "descricao": "Consolidação da propriedade do bem pelo grupo de consórcio",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410025",
+            "cst": "410",
+            "descricao": "Alienação de bem que tenha sido objeto de garantia em que o prestador da garantia não seja contribuinte",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410026",
+            "cst": "410",
+            "descricao": "Doação e amostras grátis com anulação de crédito",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410027",
+            "cst": "410",
+            "descricao": "Exportação de serviço ou de bem imaterial",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410028",
+            "cst": "410",
+            "descricao": "Operações com bens imóveis realizadas por pessoas físicas não consideradas contribuintes",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410029",
+            "cst": "410",
+            "descricao": "Operações acobertadas somente pelo ICMS",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410030",
+            "cst": "410",
+            "descricao": "Estorno de crédito por perecimento, deteriorização, roubo, furto ou extravio.",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410031",
+            "cst": "410",
+            "descricao": "Fornecimento em período anterior ao início de vigência de incidências de CBS e IBS",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 100.0,
+                "ibsUf": 100.0,
+                "ibsMun": 100.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410032",
+            "cst": "410",
+            "descricao": "Tributos incidentes na operação que não integram a base de cálculo do IBS e da CBS",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410033",
+            "cst": "410",
+            "descricao": "Operações de Fundos de Investimento Imobiliário (FII) e Fundos de Investimento nas Cadeias Produtivas do Agronegócio (Fiagro)",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410034",
+            "cst": "410",
+            "descricao": "Operações de fundos de investimento",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410035",
+            "cst": "410",
+            "descricao": "Fornecimento realizado por nanoempreendedor",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410036",
+            "cst": "410",
+            "descricao": "Descontos financeiros em nota fatura",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410037",
+            "cst": "410",
+            "descricao": "Importação os bens materiais sem incidência de IBS e CBS",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "410999",
+            "cst": "410",
+            "descricao": "Operações não onerosas sem previsão de tributação, não especificadas anteriormente",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "510001",
+            "cst": "510",
+            "descricao": "Operações, sujeitas a diferimento, com energia elétrica, relativas à importação, geração, comercialização, distribuição e transmissão",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NCM",
+            "anexo": "90281",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "515001",
+            "cst": "515",
+            "descricao": "Operações, sujeitas a diferimento, com insumos agropecuários e aquícolas (Anexo IX)",
+            "tipoAliquota": "Padrão",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": "9",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 60.0,
+                "ibsUf": 60.0,
+                "ibsMun": 60.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550001",
+            "cst": "550",
+            "descricao": "Exportações de bens materiais",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550002",
+            "cst": "550",
+            "descricao": "Regime de Trânsito",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550003",
+            "cst": "550",
+            "descricao": "Regimes de Depósito (art. 85)",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550004",
+            "cst": "550",
+            "descricao": "Regimes de Depósito (art. 87)",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550005",
+            "cst": "550",
+            "descricao": "Regimes de Depósito (art. 87, Parágrafo único)",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550006",
+            "cst": "550",
+            "descricao": "Regimes de Permanência Temporária com suspensão total",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550007",
+            "cst": "550",
+            "descricao": "Regimes de Aperfeiçoamento (Recof)",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550008",
+            "cst": "550",
+            "descricao": "Importação de bens para o Regime de Repetro-Temporário",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": "81641",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550009",
+            "cst": "550",
+            "descricao": "GNL-Temporário",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": "81642",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550010",
+            "cst": "550",
+            "descricao": "Repetro-Permanente",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": "81643",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550011",
+            "cst": "550",
+            "descricao": "Repetro-Industrialização",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": "81643",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550012",
+            "cst": "550",
+            "descricao": "Repetro-Nacional",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": "81643",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550013",
+            "cst": "550",
+            "descricao": "Repetro-Entreposto",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": "81644",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550014",
+            "cst": "550",
+            "descricao": "Zona de Processamento de Exportação",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550015",
+            "cst": "550",
+            "descricao": "Regime Tributário para Incentivo à Modernização e à Ampliação da Estrutura Portuária",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": "81861",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550016",
+            "cst": "550",
+            "descricao": "Regime Especial de Incentivos para o Desenvolvimento da Infraestrutura",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550017",
+            "cst": "550",
+            "descricao": "Regime Tributário para Incentivo à Atividade Naval - Renaval (Art. 107, I)",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550018",
+            "cst": "550",
+            "descricao": "Desoneração da aquisição de bens de capital",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": "81961",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550019",
+            "cst": "550",
+            "descricao": "Importação de bem material por indústria incentivada para utilização na ZFM",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550020",
+            "cst": "550",
+            "descricao": "Áreas de livre comércio",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550021",
+            "cst": "550",
+            "descricao": "Industrialização destinada a exportações",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550022",
+            "cst": "550",
+            "descricao": "Regime Especial de Incentivos para a Produção de Hidrogênio de Baixa Emissão de Carbono (Rehidro)",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550023",
+            "cst": "550",
+            "descricao": "Operações com hidrocarbonetos líquidos derivados de petróleo não combustíveis ou de gás natural, inclusive nafta",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550024",
+            "cst": "550",
+            "descricao": "Regime Tributário para Incentivo à Atividade Naval - Renaval (Art. 107, II)",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550025",
+            "cst": "550",
+            "descricao": "Regime Tributário para Incentivo à Atividade Naval - Renaval (Art. 107, III)",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550026",
+            "cst": "550",
+            "descricao": "Regimes de admissão temporária com suspensão total do pagamento dos tributos (ZFM)",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550027",
+            "cst": "550",
+            "descricao": "Regimes de Aperfeiçoamento (Drawback)",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550028",
+            "cst": "550",
+            "descricao": "Regimes de Aperfeiçoamento (Admissão temporária)",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "550029",
+            "cst": "550",
+            "descricao": "Zona de Processamento de Exportação",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "620001",
+            "cst": "620",
+            "descricao": "Tributação monofásica sobre combustíveis",
+            "tipoAliquota": "Uniforme setorial",
+            "nomenclatura": "NCM",
+            "anexo": "91721",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "620002",
+            "cst": "620",
+            "descricao": "Tributação monofásica com responsabilidade pela retenção sobre combustíveis",
+            "tipoAliquota": "Uniforme setorial",
+            "nomenclatura": "NCM",
+            "anexo": "91722",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "620003",
+            "cst": "620",
+            "descricao": "Tributação monofásica com responsabilidade de retenção de tributos por terceiros",
+            "tipoAliquota": "Uniforme setorial",
+            "nomenclatura": "NCM",
+            "anexo": "91723",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "620004",
+            "cst": "620",
+            "descricao": "Tributação monofásica sobre mistura de EAC com gasolina A em percentual superior ao obrigatório",
+            "tipoAliquota": "Uniforme setorial",
+            "nomenclatura": "NCM",
+            "anexo": "91724",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "620005",
+            "cst": "620",
+            "descricao": "Tributação monofásica sobre mistura de EAC com gasolina A em percentual inferior ao obrigatório",
+            "tipoAliquota": "Uniforme setorial",
+            "nomenclatura": "NCM",
+            "anexo": "91725",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "620006",
+            "cst": "620",
+            "descricao": "Tributação monofásica sobre combustíveis cobrada anteriormente",
+            "tipoAliquota": "Uniforme setorial",
+            "nomenclatura": "NCM",
+            "anexo": "91726",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "620007",
+            "cst": "620",
+            "descricao": "Perecimento, deteriorização, roubo, furto ou extravio no regime monofásico",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "800001",
+            "cst": "800",
+            "descricao": "Fusão, cisão ou incorporação",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "800002",
+            "cst": "800",
+            "descricao": "Transferência de crédito do associado, inclusive as cooperativas singulares",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "810001",
+            "cst": "810",
+            "descricao": "Crédito presumido de IBS sobre o valor apurado nos fornecimentos a partir da ZFM",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "Não possui",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "811001",
+            "cst": "811",
+            "descricao": "Anulação de Crédito por Saídas Imunes/Isentas",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "811002",
+            "cst": "811",
+            "descricao": "Débitos de notas fiscais não processadas na apuração",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "811003",
+            "cst": "811",
+            "descricao": "Desenquadramento do Simples Nacional",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "820001",
+            "cst": "820",
+            "descricao": "Documento com informações de fornecimento de serviços de planos de assistência à saúde elencados no art. 234 da Lei Complementar nº214, de 2025",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS",
+            "anexo": "92341",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "820002",
+            "cst": "820",
+            "descricao": "Documento com informações de fornecimento de serviços de planos de assistência funerária",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS",
+            "anexo": "92361",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "820003",
+            "cst": "820",
+            "descricao": "Documento com informações de fornecimento de serviços de planos de assistência à saúde de animais domésticos",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS",
+            "anexo": "92431",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "820004",
+            "cst": "820",
+            "descricao": "Documento com informações de prestação de serviços de consursos de prognósticos",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "820005",
+            "cst": "820",
+            "descricao": "Documento com informações de alienação de bens imóveis",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "Não possui",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "820006",
+            "cst": "820",
+            "descricao": "Documento com informações de fornecimento de serviços de exploração de via",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS",
+            "anexo": "90111",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        },
+        {
+            "codigo": "820007",
+            "cst": "820",
+            "descricao": "Documento com informações de fornecimento de serviços financeiros",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS",
+            "anexo": "91811",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "820008",
+            "cst": "820",
+            "descricao": "Documento com informações de fornecimento de serviço continuado, mas com tributação realizada em fatura anterior",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "820009",
+            "cst": "820",
+            "descricao": "Fornecimentos declarados e tributados em outro documento",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": false,
+                "ibs": false
+            }
+        },
+        {
+            "codigo": "830001",
+            "cst": "830",
+            "descricao": "Documento com exclusão da BC da CBS e do IBS de energia elétrica fornecida pela distribuidora à UC",
+            "tipoAliquota": "Sem alíquota",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "percentualReducao": {
+                "cbs": 0.0,
+                "ibsUf": 0.0,
+                "ibsMun": 0.0
+            },
+            "apropriacaoCreditoAdquirente": {
+                "cbs": true,
+                "ibs": true
+            }
+        }
+    ]
+}

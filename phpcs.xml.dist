@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<ruleset name="reforma-tributaria-api">
+    <description>Padrao de codigo do projeto: PSR-12 e compatibilidade com PHP 7.4 ou superior.</description>
+
+    <file>src</file>
+    <file>tests</file>
+    <file>bin</file>
+    <file>resources/regras</file>
+    <exclude-pattern>tests/Fixtures/*</exclude-pattern>
+
+    <arg name="colors"/>
+    <arg value="sp"/>
+
+    <rule ref="PSR12"/>
+
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120"/>
+            <property name="absoluteLineLimit" value="160"/>
+        </properties>
+        <exclude-pattern>resources/regras/*</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+        <exclude-pattern>bin/*</exclude-pattern>
+    </rule>
+
+    <config name="testVersion" value="7.4-"/>
+    <rule ref="PHPCompatibility"/>
+</ruleset>

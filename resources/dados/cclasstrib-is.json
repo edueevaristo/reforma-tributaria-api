@@ -1,0 +1,301 @@
+{
+    "meta": {
+        "fonte": "Calculadora de Tributos - Regime Regular (Receita Federal do Brasil / Serpro), licenca MIT",
+        "repositorio": "https://github.com/ReceitaFederal/calculadora-rtc-regime-regular",
+        "versaoBaseDados": "V0073",
+        "dataBaseDados": "2026-11-09",
+        "descricao": "Nova tabela de Classificações Tributárias (IT 2025.002 v.1.71), publicada em 30/10/2026."
+    },
+    "dados": [
+        {
+            "codigo": "000001",
+            "cst": "000",
+            "descricao": "Primeiro fornecimento a qualquer título de bem",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "000002",
+            "cst": "000",
+            "descricao": "Arrematação em leilão público",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "000003",
+            "cst": "000",
+            "descricao": "Transferência não onerosa de bem produzido",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "000004",
+            "cst": "000",
+            "descricao": "Incorporação do bem ao ativo imobilizado pelo fabricante",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "000005",
+            "cst": "000",
+            "descricao": "Consumo do bem pelo fabricante",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "000006",
+            "cst": "000",
+            "descricao": "Venda direta pelo fabricante ao consumidor final",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "000007",
+            "cst": "000",
+            "descricao": "Venda de produto enviado para terceiro para processamento/industrialização",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "000008",
+            "cst": "000",
+            "descricao": "Venda efetiva de mercadoria remetida para venda fora do estabelecimento",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "000009",
+            "cst": "000",
+            "descricao": "Importação de bens e serviços",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "000010",
+            "cst": "000",
+            "descricao": "Primeiro fornecimento de bem mineral (venda no mercado interno ou exportação)",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "100001",
+            "cst": "100",
+            "descricao": "Exportações de bens e serviços",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "200001",
+            "cst": "200",
+            "descricao": "Remessa para filial/depósito fechado",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "200002",
+            "cst": "200",
+            "descricao": "Remessa para terceiro para processamento e industrialização",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "200003",
+            "cst": "200",
+            "descricao": "Remessa para adquirente por conta e ordem do fabricante",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "200004",
+            "cst": "200",
+            "descricao": "Remessa para venda fora do estabelecimento",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "200005",
+            "cst": "200",
+            "descricao": "Retorno de mercadoria enviada para processamento/industrialização",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "200006",
+            "cst": "200",
+            "descricao": "Retorno de remessa enviada para venda fora do estabelecimento",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "200007",
+            "cst": "200",
+            "descricao": "Venda de bem ou serviço tributado pelo IS em operação anterior",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NBS ou NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "200008",
+            "cst": "200",
+            "descricao": "Venda em embalagem não primária (não embalada para consumo imediato) de bebidas e fumo",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "300001",
+            "cst": "300",
+            "descricao": "Devolução de bens com documento fiscal emitido pelo adquirente",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "300002",
+            "cst": "300",
+            "descricao": "Devolução de bens com documento fiscal emitido pelo fornecedor",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "400001",
+            "cst": "400",
+            "descricao": "Fornecimento de bens com o fim específico de exportação",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "500001",
+            "cst": "500",
+            "descricao": "Venda de gás natural destinado à utilização como insumo em processo industrial e como combustível para fins de transporte, realizada por produtor extrativista",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "500003",
+            "cst": "500",
+            "descricao": "Venda de gás natural destinado à utilização como insumo em processo industrial e como combustível para fins de transporte, realizada por importador",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "500004",
+            "cst": "500",
+            "descricao": "Importação de gás natural destinado à utilização como insumo em processo industrial e como combustível para fins de transporte, realizada por importador distribuidor ou varejista",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "500007",
+            "cst": "500",
+            "descricao": "Venda de veículo nacional com alíquota zero para motorista de táxi com regime diferenciado reconhecido",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "500008",
+            "cst": "500",
+            "descricao": "Venda de veículo nacional com alíquota zero para pessoa com deficiência ou transtorno do espectro autista",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "600001",
+            "cst": "600",
+            "descricao": "Bagagens de viajantes e de tripulantes submetidas ao regime de tributação especial",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "600002",
+            "cst": "600",
+            "descricao": "Remessas internacionais submetidas ao regime de tributação simplificada",
+            "tipoAliquota": "Alíquotas Combinadas (Ad Valorem e Ad Rem)",
+            "nomenclatura": "NCM",
+            "anexo": null,
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        }
+    ]
+}

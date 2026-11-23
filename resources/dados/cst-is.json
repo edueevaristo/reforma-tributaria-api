@@ -1,0 +1,53 @@
+{
+    "meta": {
+        "fonte": "Calculadora de Tributos - Regime Regular (Receita Federal do Brasil / Serpro), licenca MIT",
+        "repositorio": "https://github.com/ReceitaFederal/calculadora-rtc-regime-regular",
+        "versaoBaseDados": "V0073",
+        "dataBaseDados": "2026-11-09",
+        "descricao": "Nova tabela de Classificações Tributárias (IT 2025.002 v.1.71), publicada em 30/10/2026."
+    },
+    "dados": [
+        {
+            "codigo": "000",
+            "descricao": "Tributado com Imposto Seletivo",
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "100",
+            "descricao": "Imunidade",
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "200",
+            "descricao": "Não ocorrência do Fato Gerador",
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "300",
+            "descricao": "Devolução",
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "400",
+            "descricao": "Suspensão",
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "500",
+            "descricao": "Alíquota Zero",
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        },
+        {
+            "codigo": "600",
+            "descricao": "Isenção",
+            "inicioVigencia": "2027-01-01",
+            "fimVigencia": null
+        }
+    ]
+}

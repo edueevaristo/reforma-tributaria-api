@@ -1,0 +1,281 @@
+{
+    "meta": {
+        "fonte": "Calculadora de Tributos - Regime Regular (Receita Federal do Brasil / Serpro), licenca MIT",
+        "repositorio": "https://github.com/ReceitaFederal/calculadora-rtc-regime-regular",
+        "versaoBaseDados": "V0073",
+        "dataBaseDados": "2026-11-09",
+        "descricao": "Nova tabela de Classificações Tributárias (IT 2025.002 v.1.71), publicada em 30/10/2026."
+    },
+    "dados": [
+        {
+            "codigo": "000",
+            "descricao": "Tributação integral",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": true,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "010",
+            "descricao": "Tributação com alíquotas uniformes",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": true,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "011",
+            "descricao": "Tributação com alíquotas uniformes reduzidas",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": true,
+                "gIBSCBSMono": false,
+                "gRed": true,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "200",
+            "descricao": "Alíquota reduzida",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": true,
+                "gIBSCBSMono": false,
+                "gRed": true,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "220",
+            "descricao": "Alíquota fixa",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": true,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "221",
+            "descricao": "Alíquota fixa proporcional",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": true,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "222",
+            "descricao": "Redução de Base de Cálculo",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": true,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "400",
+            "descricao": "Isenção",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": false,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "410",
+            "descricao": "Imunidade e não incidência",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": false,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "510",
+            "descricao": "Diferimento",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": true,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": true,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "515",
+            "descricao": "Diferimento com redução de alíquota",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": true,
+                "gIBSCBSMono": false,
+                "gRed": true,
+                "gDif": true,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "550",
+            "descricao": "Suspensão",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": true,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "620",
+            "descricao": "Tributação monofásica",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": false,
+                "gIBSCBSMono": true,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "800",
+            "descricao": "Transferência de crédito",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": false,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": true,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "810",
+            "descricao": "Ajustes de IBS na ZFM",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": false,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": true,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "811",
+            "descricao": "Ajustes",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": false,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": true
+            }
+        },
+        {
+            "codigo": "820",
+            "descricao": "Tributação em documento específico",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": false,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        },
+        {
+            "codigo": "830",
+            "descricao": "Exclusão de base de cálculo",
+            "inicioVigencia": "2026-01-01",
+            "fimVigencia": null,
+            "grupos": {
+                "gIBSCBS": true,
+                "gIBSCBSMono": false,
+                "gRed": false,
+                "gDif": false,
+                "gTransfCred": false,
+                "gCredPresIBSZFM": false,
+                "gAjusteCompet": false
+            }
+        }
+    ]
+}

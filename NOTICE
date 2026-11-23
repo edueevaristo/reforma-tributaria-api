@@ -1,0 +1,10 @@
+Reforma Tributaria API (PHP)
+Copyright (c) 2026 Eduardo Evaristo. Licenca MIT.
+
+Este projeto inclui dados e regras derivados da Calculadora de Tributos - Regime Regular,
+Copyright (c) 2026 Receita Federal do Brasil, licenca MIT:
+https://github.com/ReceitaFederal/calculadora-rtc-regime-regular
+
+- resources/dados/*.json: gerados a partir do banco de dados da calculadora (bin/atualizar-tabelas.php).
+- resources/regras/base-calculo.php: regras do enum ElementoBaseCalculo.
+- tests/Fixtures/xsd: schemas XML distribuidos com a calculadora (licenca em tests/Fixtures/xsd/LICENSE-calculadora-rtc).
