@@ -10,6 +10,7 @@ Ela resolve, em PHP puro e sem dependências externas:
 - **Cálculo do IBS e da CBS por item**, com a mesma política de arredondamento da calculadora da Receita.
 - **Grupos XML `IBSCBS` e `IBSCBSTot`** da NF-e/NFC-e (NT 2025.002), validados contra o XSD oficial.
 - **Cliente da Calculadora de Tributos oficial** da Receita Federal, para os casos que ainda não são calculados localmente.
+- **Mocks WireMock** da calculadora oficial e dos web services de NF-e da SEFAZ, com as rejeições da Reforma Tributária, para testar a emissão de ponta a ponta.
 
 Compatível com **PHP 7.4 até 8.5**.
 
@@ -19,6 +20,7 @@ Compatível com **PHP 7.4 até 8.5**.
 
 - [Instalação](#instalação)
 - [Uso](#uso)
+- [Testes com WireMock](#testes-com-wiremock)
 - [O que é calculado localmente](#o-que-é-calculado-localmente)
 - [Regras por ano](#regras-por-ano)
 - [Origem dos dados](#origem-dos-dados)
@@ -32,23 +34,16 @@ Compatível com **PHP 7.4 até 8.5**.
 
 Requisitos: PHP 7.4 ou superior com as extensões `bcmath`, `dom` e `json`. A extensão `curl` só é necessária para usar o cliente da calculadora oficial.
 
-Enquanto o pacote não estiver publicado no Packagist, instale direto do GitHub:
-
-```json
-{
-    "repositories": [
-        { "type": "vcs", "url": "https://github.com/edueevaristo/reforma-tributaria-api" }
-    ],
-    "require": {
-        "edueevaristo/reforma-tributaria-api": "dev-main"
-    }
-}
-```
-
-Depois que estiver no Packagist:
+O pacote está publicado no [Packagist](https://packagist.org/packages/edueevaristo/reforma-tributaria-api):
 
 ```bash
 composer require edueevaristo/reforma-tributaria-api
+```
+
+Para usar a versão em desenvolvimento da `main`:
+
+```bash
+composer require edueevaristo/reforma-tributaria-api:dev-main
 ```
 
 ## Uso
@@ -197,6 +192,26 @@ Todas as exceções estendem `ReformaTributariaException`:
 | `OperacaoNaoSuportadaException` | O caso existe na lei, mas ainda não é calculado localmente. Use a calculadora oficial. |
 | `ErroCalculadoraOficialException` | A calculadora oficial respondeu com erro. `statusHttp()` e `corpoResposta()` trazem os detalhes. |
 
+## Testes com WireMock
+
+A pasta [`wiremock/`](wiremock) traz mocks prontos para testar a emissão de NF-e sem serviços externos:
+
+- **Calculadora de Tributos oficial**: cálculo, observabilidade, base unificada, geração e validação de XML e consulta de cClassTrib, com cenários de sucesso e de erro.
+- **SEFAZ NF-e 4.00** (`NFeAutorizacao4` e `NFeStatusServico4`): nota autorizada, SEFAZ lenta, SEFAZ fora do ar e as rejeições da Reforma Tributária (1023, 1024, 1041, 1069, 1076, 1085, 1091, 1104, 1115 e 1150).
+
+```bash
+docker compose -f wiremock/docker-compose.yml up -d
+
+# Calculadora oficial simulada
+curl -X POST http://localhost:8089/api/calculadora/regime-geral -H 'Content-Type: application/json' -d '{"itens":[]}'
+
+# SEFAZ simulada: o cenario vai na URL
+# http://localhost:8089/sefaz/autorizado/NFeAutorizacao4
+# http://localhost:8089/sefaz/rejeicao-1091/NFeAutorizacao4
+```
+
+O protocolo de autorização usa a chave e o `DigestValue` da nota enviada, então o seu emissor recebe um retorno coerente com o XML que mandou. Todos os cenários, como apontar o seu emissor para o mock e como criar cenários novos estão em [docs/wiremock.md](docs/wiremock.md).
+
 ## O que é calculado localmente
 
 | CST | Situação | Local |
@@ -248,7 +263,7 @@ Resumo:
 
 1. Faça um fork e crie uma branch seguindo o [padrão de branches](#padrão-de-branches).
 2. Escreva o código e os testes. Toda regra fiscal precisa citar o fundamento legal.
-3. Rode `composer check` (padrão de código + testes).
+3. Rode `composer check` (padrão de código + testes). Se mexer nos mocks, rode também os testes de integração com WireMock ([docs/wiremock.md](docs/wiremock.md#testes-de-integração)).
 4. Abra um pull request para a `main`. O CI roda em PHP 7.4 a 8.5.
 5. O merge é feito pelo mantenedor depois da revisão.
 
@@ -303,6 +318,16 @@ O GitHub só impede o push direto na `main` com a proteção de branch ligada. N
 
 O arquivo [`.github/CODEOWNERS`](.github/CODEOWNERS) já define você como revisor obrigatório de todo o código.
 
+### Atualização automática no Packagist
+
+Para o Packagist ler cada push e cada tag sozinho, configure o webhook no GitHub em **Settings > Webhooks > Add webhook**:
+
+1. **Payload URL**: `https://packagist.org/api/github?username=edueevaristo`
+2. **Content type**: `application/json`
+3. **Secret**: o API Token da sua página de perfil no Packagist (packagist.org/profile)
+4. **Which events**: Just the push event
+5. Salve. O aviso "This package is not auto-updated" some da página do pacote depois do primeiro push.
+
 ## Dúvidas frequentes
 
 **Por que não calcular tudo localmente?**
@@ -316,6 +341,12 @@ Os testes reproduzem os exemplos da documentação oficial (base unificada e ite
 
 **Como fica quando o Senado publicar a alíquota de referência?**
 Até a regra ser cadastrada em `resources/regras/transicao.php`, informe a alíquota em `Aliquotas`. Depois, abra um PR na branch `regra/` com o número da resolução.
+
+**Como testo a emissão sem a SEFAZ e sem a calculadora oficial?**
+Use os mocks WireMock. Suba com `docker compose -f wiremock/docker-compose.yml up -d` e aponte o seu emissor para `http://localhost:8089/sefaz/{cenario}/NFeAutorizacao4`. Veja [docs/wiremock.md](docs/wiremock.md).
+
+**Como o Packagist recebe as versões novas?**
+Pelo webhook do GitHub configurado no repositório. Sem o webhook, use o botão **Update** na página do pacote no Packagist.
 
 **Posso usar com NFePHP?**
 Sim. Use `grupoItem()` e `grupoTotal()` passando o `DOMDocument` do seu XML e anexe os elementos em `det/imposto` e `total`.

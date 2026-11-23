@@ -98,4 +98,16 @@ composer test    # PHPUnit
 composer lint    # PSR-12 + compatibilidade PHP 7.4+
 composer check   # os dois
 php exemplos/nfe-2026.php
+
+# Testes de integracao com os mocks WireMock (precisa de Docker)
+docker compose -f wiremock/docker-compose.yml up -d
+WIREMOCK_URL=http://localhost:8089 vendor/bin/phpunit --testsuite integracao
 ```
+
+Detalhes dos mocks e como criar cenários novos: [docs/wiremock.md](docs/wiremock.md).
+
+## Publicar uma versão (mantenedor)
+
+1. Atualize o `CHANGELOG.md`, movendo os itens de "Não publicado" para a versão nova.
+2. Crie a tag e envie: `git tag -a v0.2.0 -m "v0.2.0" && git push origin v0.2.0`.
+3. O Packagist lê a tag pelo webhook do GitHub. Se o webhook não estiver configurado, clique em **Update** na página do pacote.

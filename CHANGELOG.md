@@ -4,7 +4,12 @@ Todas as mudanças relevantes deste projeto. O formato segue o [Keep a Changelog
 
 ## [Não publicado]
 
+## [0.1.0] - 2026-11-23
+
 ### Adicionado
+
+- Mocks WireMock da Calculadora de Tributos oficial e dos web services de NF-e 4.00 da SEFAZ (autorização, status, rejeições da Reforma Tributária, SEFAZ lenta e fora do ar), com testes de integração no CI.
+- Publicação no Packagist.
 
 - Cronograma de transição 2026-2033 com fundamento legal (`Transicao\Cronograma`).
 - Base de cálculo unificada da NF-e e da NFC-e (`BaseCalculo\CalculadoraBaseCalculo`).
