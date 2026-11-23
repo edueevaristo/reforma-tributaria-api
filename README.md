@@ -40,7 +40,7 @@ O pacote está publicado no [Packagist](https://packagist.org/packages/edueevari
 composer require edueevaristo/reforma-tributaria-api
 ```
 
-Para usar a versão em desenvolvimento da `main`:
+Enquanto a primeira versão (tag `v0.1.0`) não estiver publicada no GitHub, o Composer só encontra a versão em desenvolvimento da `main`. Nesse caso, ou para testar o que ainda não saiu em versão:
 
 ```bash
 composer require edueevaristo/reforma-tributaria-api:dev-main
@@ -320,7 +320,7 @@ O arquivo [`.github/CODEOWNERS`](.github/CODEOWNERS) já define você como revis
 
 ### Atualização automática no Packagist
 
-Para o Packagist ler cada push e cada tag sozinho, configure o webhook no GitHub em **Settings > Webhooks > Add webhook**:
+O pacote já está com atualização automática: o Packagist lê cada push e cada tag sozinho. Se a página do pacote voltar a mostrar o aviso "This package is not auto-updated", configure o webhook no GitHub em **Settings > Webhooks > Add webhook**:
 
 1. **Payload URL**: `https://packagist.org/api/github?username=edueevaristo`
 2. **Content type**: `application/json`
@@ -346,7 +346,7 @@ Até a regra ser cadastrada em `resources/regras/transicao.php`, informe a alíq
 Use os mocks WireMock. Suba com `docker compose -f wiremock/docker-compose.yml up -d` e aponte o seu emissor para `http://localhost:8089/sefaz/{cenario}/NFeAutorizacao4`. Veja [docs/wiremock.md](docs/wiremock.md).
 
 **Como o Packagist recebe as versões novas?**
-Pelo webhook do GitHub configurado no repositório. Sem o webhook, use o botão **Update** na página do pacote no Packagist.
+Automaticamente, a cada push e a cada tag. Se a atualização automática parar, use o botão **Update** na página do pacote no Packagist.
 
 **Posso usar com NFePHP?**
 Sim. Use `grupoItem()` e `grupoTotal()` passando o `DOMDocument` do seu XML e anexe os elementos em `det/imposto` e `total`.
