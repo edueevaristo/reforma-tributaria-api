@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace DuNf\ReformaTributaria\Calculo;
 
-use DuNf\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Suporte\Decimal;
+use DuNf\ReformaTributaria\Tributo;
 
 /**
  * Aliquotas nominais em percentual (ex.: '8.8' para 8,8%).
@@ -14,11 +15,8 @@ use DuNf\ReformaTributaria\Suporte\Numero;
  */
 final class Aliquotas
 {
-    private ?string $cbs;
-
-    private ?string $ibsUf;
-
-    private ?string $ibsMun;
+    /** @var array<string, Decimal|null> */
+    private array $porTributo;
 
     /**
      * @param int|float|string|null $cbs
@@ -27,23 +25,18 @@ final class Aliquotas
      */
     public function __construct($cbs = null, $ibsUf = null, $ibsMun = null)
     {
-        $this->cbs = $cbs === null ? null : Numero::normalizar($cbs);
-        $this->ibsUf = $ibsUf === null ? null : Numero::normalizar($ibsUf);
-        $this->ibsMun = $ibsMun === null ? null : Numero::normalizar($ibsMun);
+        $this->porTributo = [
+            Tributo::cbs()->codigo() => Decimal::deOpcional($cbs),
+            Tributo::ibsUf()->codigo() => Decimal::deOpcional($ibsUf),
+            Tributo::ibsMun()->codigo() => Decimal::deOpcional($ibsMun),
+        ];
     }
 
-    public function cbs(): ?string
+    /**
+     * Aliquota informada para o tributo, ou null para usar a fixada em lei.
+     */
+    public function de(Tributo $tributo): ?Decimal
     {
-        return $this->cbs;
-    }
-
-    public function ibsUf(): ?string
-    {
-        return $this->ibsUf;
-    }
-
-    public function ibsMun(): ?string
-    {
-        return $this->ibsMun;
+        return $this->porTributo[$tributo->codigo()];
     }
 }

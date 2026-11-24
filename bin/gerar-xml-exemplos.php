@@ -19,9 +19,11 @@ declare(strict_types=1);
 
 use DuNf\ReformaTributaria\BaseCalculo\CalculadoraBaseCalculo;
 use DuNf\ReformaTributaria\BaseCalculo\ComponentesBaseCalculo;
+use DuNf\ReformaTributaria\BaseCalculo\ModeloDocumento;
+use DuNf\ReformaTributaria\BaseCalculo\Natureza;
 use DuNf\ReformaTributaria\Calculo\CalculadoraIbsCbs;
 use DuNf\ReformaTributaria\Calculo\ItemIbsCbs;
-use DuNf\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Suporte\Decimal;
 use DuNf\ReformaTributaria\Xml\GeradorXmlNfe;
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -196,16 +198,16 @@ function montarNfe(array $exemplo): DOMDocument
     foreach ($exemplo['itens'] as $indice => $item) {
         list($descricao, $ncm, $cfop, $cst, $cClassTrib, $valor) = $item;
         $tributado = $cst !== '410';
-        $vICMS = $tributado ? Numero::valorFiscal(Numero::aplicarPercentual($valor, '18')) : '0.00';
-        $basePis = Numero::subtrair($valor, $vICMS);
-        $vPIS = $tributado ? Numero::valorFiscal(Numero::aplicarPercentual($basePis, '1.65')) : '0.00';
-        $vCOFINS = $tributado ? Numero::valorFiscal(Numero::aplicarPercentual($basePis, '7.6')) : '0.00';
+        $vICMS = $tributado ? (string) Decimal::de($valor)->percentual('18')->valorFiscal() : '0.00';
+        $basePis = (string) Decimal::de($valor)->subtrair($vICMS);
+        $vPIS = $tributado ? (string) Decimal::de($basePis)->percentual('1.65')->valorFiscal() : '0.00';
+        $vCOFINS = $tributado ? (string) Decimal::de($basePis)->percentual('7.6')->valorFiscal() : '0.00';
 
         $base = (new CalculadoraBaseCalculo())->calcular(
             new ComponentesBaseCalculo(['vProd' => $valor, 'vICMS' => $vICMS, 'vPIS' => $vPIS, 'vCOFINS' => $vCOFINS]),
             2026,
-            CalculadoraBaseCalculo::NATUREZA_BEM,
-            $modelo
+            Natureza::bem(),
+            ModeloDocumento::de($modelo)
         );
 
         $itensCalculo[] = new ItemIbsCbs($indice + 1, $cst, $cClassTrib, $base->baseRegimeRegular());
@@ -295,7 +297,7 @@ function montarNfe(array $exemplo): DOMDocument
             el($icms, 'vBC', $linha['valor']);
             el($icms, 'pICMS', '18.00');
             el($icms, 'vICMS', $linha['vICMS']);
-            $totais['vBC'] = Numero::somar($totais['vBC'], $linha['valor']);
+            $totais['vBC'] = (string) Decimal::de($totais['vBC'])->somar($linha['valor']);
         } else {
             el($icms, 'CST', '41');
         }
@@ -303,12 +305,12 @@ function montarNfe(array $exemplo): DOMDocument
         if ($linha['tributado']) {
             $pis = el(el($imposto, 'PIS'), 'PISAliq');
             el($pis, 'CST', '01');
-            el($pis, 'vBC', Numero::valorFiscal($linha['basePis']));
+            el($pis, 'vBC', (string) Decimal::de($linha['basePis'])->valorFiscal());
             el($pis, 'pPIS', '1.65');
             el($pis, 'vPIS', $linha['vPIS']);
             $cofins = el(el($imposto, 'COFINS'), 'COFINSAliq');
             el($cofins, 'CST', '01');
-            el($cofins, 'vBC', Numero::valorFiscal($linha['basePis']));
+            el($cofins, 'vBC', (string) Decimal::de($linha['basePis'])->valorFiscal());
             el($cofins, 'pCOFINS', '7.60');
             el($cofins, 'vCOFINS', $linha['vCOFINS']);
         } else {
@@ -318,27 +320,27 @@ function montarNfe(array $exemplo): DOMDocument
 
         $imposto->appendChild($gerador->grupoItem($documento->itens()[$indice], $dom));
 
-        $totais['vICMS'] = Numero::somar($totais['vICMS'], $linha['vICMS']);
-        $totais['vProd'] = Numero::somar($totais['vProd'], $linha['valor']);
-        $totais['vPIS'] = Numero::somar($totais['vPIS'], $linha['vPIS']);
-        $totais['vCOFINS'] = Numero::somar($totais['vCOFINS'], $linha['vCOFINS']);
+        $totais['vICMS'] = (string) Decimal::de($totais['vICMS'])->somar($linha['vICMS']);
+        $totais['vProd'] = (string) Decimal::de($totais['vProd'])->somar($linha['valor']);
+        $totais['vPIS'] = (string) Decimal::de($totais['vPIS'])->somar($linha['vPIS']);
+        $totais['vCOFINS'] = (string) Decimal::de($totais['vCOFINS'])->somar($linha['vCOFINS']);
     }
 
     $total = el($inf, 'total');
     $icmsTot = el($total, 'ICMSTot');
-    el($icmsTot, 'vBC', Numero::valorFiscal($totais['vBC']));
-    el($icmsTot, 'vICMS', Numero::valorFiscal($totais['vICMS']));
+    el($icmsTot, 'vBC', (string) Decimal::de($totais['vBC'])->valorFiscal());
+    el($icmsTot, 'vICMS', (string) Decimal::de($totais['vICMS'])->valorFiscal());
     foreach (['vICMSDeson', 'vFCP', 'vBCST', 'vST', 'vFCPST', 'vFCPSTRet'] as $campo) {
         el($icmsTot, $campo, '0.00');
     }
-    el($icmsTot, 'vProd', Numero::valorFiscal($totais['vProd']));
+    el($icmsTot, 'vProd', (string) Decimal::de($totais['vProd'])->valorFiscal());
     foreach (['vFrete', 'vSeg', 'vDesc', 'vII', 'vIPI', 'vIPIDevol'] as $campo) {
         el($icmsTot, $campo, '0.00');
     }
-    el($icmsTot, 'vPIS', Numero::valorFiscal($totais['vPIS']));
-    el($icmsTot, 'vCOFINS', Numero::valorFiscal($totais['vCOFINS']));
+    el($icmsTot, 'vPIS', (string) Decimal::de($totais['vPIS'])->valorFiscal());
+    el($icmsTot, 'vCOFINS', (string) Decimal::de($totais['vCOFINS'])->valorFiscal());
     el($icmsTot, 'vOutro', '0.00');
-    el($icmsTot, 'vNF', Numero::valorFiscal($totais['vProd']));
+    el($icmsTot, 'vNF', (string) Decimal::de($totais['vProd'])->valorFiscal());
     $total->appendChild($gerador->grupoTotal($documento->totais(), $dom));
 
     el(el($inf, 'transp'), 'modFrete', '9');
@@ -346,7 +348,7 @@ function montarNfe(array $exemplo): DOMDocument
     $detPag = el(el($inf, 'pag'), 'detPag');
     $semPagamento = !empty($exemplo['semPagamento']);
     el($detPag, 'tPag', $semPagamento ? '90' : '01');
-    el($detPag, 'vPag', $semPagamento ? '0.00' : Numero::valorFiscal($totais['vProd']));
+    el($detPag, 'vPag', $semPagamento ? '0.00' : (string) Decimal::de($totais['vProd'])->valorFiscal());
 
     el(el($inf, 'infAdic'), 'infCpl', 'XML de exemplo gerado pela biblioteca reforma-tributaria-api para testes. '
         . 'Sem valor fiscal.');

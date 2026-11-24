@@ -46,29 +46,6 @@ Para testar o que ainda não saiu em versão, use a `main`:
 composer require du-nf/reforma-tributaria:dev-main
 ```
 
-### Migrando de `edueevaristo/reforma-tributaria-api`
-
-A partir da versão 0.3.0 o pacote mudou de nome e de namespace. O pacote antigo `edueevaristo/reforma-tributaria-api` foi descontinuado e não recebe novas versões.
-
-1. Troque o pacote no Composer:
-
-   ```bash
-   composer remove edueevaristo/reforma-tributaria-api
-   composer require du-nf/reforma-tributaria
-   ```
-
-2. Troque o namespace no seu código, de `EduardoEvaristo\ReformaTributaria` para `DuNf\ReformaTributaria`:
-
-   ```php
-   // antes
-   use EduardoEvaristo\ReformaTributaria\Transicao\Cronograma;
-
-   // depois
-   use DuNf\ReformaTributaria\Transicao\Cronograma;
-   ```
-
-   Nenhuma classe ou método mudou de nome; só o prefixo do namespace.
-
 ## Uso
 
 ### Cronograma de transição
@@ -92,6 +69,8 @@ $ano->fundamentoLegal();            // ['LC 214/2025, art. 344', 'LC 214/2025, a
 ```php
 use DuNf\ReformaTributaria\BaseCalculo\CalculadoraBaseCalculo;
 use DuNf\ReformaTributaria\BaseCalculo\ComponentesBaseCalculo;
+use DuNf\ReformaTributaria\BaseCalculo\ModeloDocumento;
+use DuNf\ReformaTributaria\BaseCalculo\Natureza;
 
 $base = (new CalculadoraBaseCalculo())->calcular(
     new ComponentesBaseCalculo([
@@ -102,8 +81,8 @@ $base = (new CalculadoraBaseCalculo())->calcular(
         'vICMS' => '171.00',
     ]),
     2026,
-    CalculadoraBaseCalculo::NATUREZA_BEM,
-    CalculadoraBaseCalculo::MODELO_NFE
+    Natureza::bem(),         // ou Natureza::servico(), ou Natureza::de('bem')
+    ModeloDocumento::nfe()   // ou ModeloDocumento::nfce(), ou ModeloDocumento::de(65)
 );
 
 $base->baseRegimeRegular();   // '691.12' (vBC do IBS/CBS)
@@ -117,6 +96,7 @@ $base->avisos();              // componentes ignorados no ano, natureza ou model
 use DuNf\ReformaTributaria\Calculo\Aliquotas;
 use DuNf\ReformaTributaria\Calculo\CalculadoraIbsCbs;
 use DuNf\ReformaTributaria\Calculo\ItemIbsCbs;
+use DuNf\ReformaTributaria\Tributo;
 
 $calculadora = new CalculadoraIbsCbs();
 
@@ -135,6 +115,13 @@ $documento = $calculadora->calcularDocumento([
 ], new DateTimeImmutable('2027-03-10'));
 
 $documento->totais()->cbs(); // '42.24'
+
+// Os três tributos também podem ser percorridos com Tributo
+foreach (Tributo::todos() as $tributo) {
+    $tributo->nome();                          // 'IBS estadual', 'IBS municipal', 'CBS'
+    $item->tributo($tributo)->valor();         // valor devido do item
+    $documento->totais()->valor($tributo);     // total do documento
+}
 ```
 
 Regra das alíquotas: a alíquota informada em `Aliquotas` tem prioridade. Quando não é informada, vale a alíquota fixada em lei para o ano. Se o ano não tiver alíquota fixada em lei, a biblioteca lança `DadoInvalidoException` pedindo a alíquota.
@@ -175,6 +162,7 @@ Exemplo de saída (`php exemplos/nfe-2026.php`):
 ```php
 use DuNf\ReformaTributaria\Tabelas\TabelaClassificacaoTributaria;
 use DuNf\ReformaTributaria\Tabelas\TabelaSituacaoTributaria;
+use DuNf\ReformaTributaria\Tributo;
 
 $data = new DateTimeImmutable('2027-01-01');
 
@@ -182,11 +170,20 @@ $classificacao = (new TabelaClassificacaoTributaria())->buscar('200028', $data);
 $classificacao->descricao();            // 'Fornecimento dos serviços de educação (Anexo II)'
 $classificacao->percentualReducaoCbs(); // '60'
 
+$classificacao->percentualReducao(Tributo::ibsMun()); // Decimal '60'
+
 $cst = (new TabelaSituacaoTributaria())->buscar('200', $data);
-$cst->exigeGrupo('gRed'); // true
+$cst->exigeReducao();      // true (grupo gRed)
+$cst->exigeGrupo('gRed');  // true
 
 (new TabelaClassificacaoTributaria())->listar($data, '000'); // todas as cClassTrib do CST 000
+
+// Tabelas do Imposto Seletivo (a partir de 2027)
+TabelaSituacaoTributaria::impostoSeletivo()->buscar('000', $data);
+TabelaClassificacaoTributaria::impostoSeletivo()->listar($data);
 ```
+
+Para testar com dados próprios, passe o conteúdo da tabela no construtor, no mesmo formato dos arquivos de `resources/dados`: `new TabelaSituacaoTributaria(['meta' => [...], 'dados' => [...]])`.
 
 ### Calculadora de Tributos oficial
 
@@ -202,7 +199,20 @@ $xml = $cliente->gerarXml($resultado, 'nfe');
 $cliente->validarXml($xml, 'nfe', 'grupo');
 ```
 
-O transporte HTTP padrão usa `ext-curl`. Para usar Guzzle ou outro cliente, implemente a interface `TransporteHttp`.
+O transporte HTTP padrão usa `ext-curl`. Para usar o cliente HTTP do seu projeto (Guzzle, Symfony HttpClient ou qualquer cliente PSR-18), use o `TransportePsr18` com as fábricas PSR-17:
+
+```php
+use DuNf\ReformaTributaria\CalculadoraOficial\Cliente;
+use DuNf\ReformaTributaria\CalculadoraOficial\TransportePsr18;
+
+$fabrica = new \GuzzleHttp\Psr7\HttpFactory();
+$cliente = new Cliente(
+    'http://localhost:8080/api/calculadora',
+    new TransportePsr18(new \GuzzleHttp\Client(), $fabrica, $fabrica)
+);
+```
+
+O `TransportePsr18` precisa dos pacotes `psr/http-client` e `psr/http-factory`, que o Guzzle e o Symfony HttpClient já instalam. Para qualquer outro caso, implemente a interface `TransporteHttp`.
 
 ### Erros
 
@@ -239,7 +249,9 @@ curl http://localhost:8089/exemplos/nfe/xml/devolucao.xml -o devolucao.xml
 php exemplos/enviar-wiremock.php devolucao autorizado
 ```
 
-O protocolo de autorização usa a chave e o `DigestValue` da nota enviada, então o seu emissor recebe um retorno coerente com o XML que mandou. Todos os cenários, os XMLs de exemplo, como apontar o seu emissor para o mock e como criar cenários novos estão em [docs/wiremock.md](docs/wiremock.md).
+Para testar sem escrever código, importe no Postman a coleção e o ambiente da pasta [`postman/`](postman): são 51 requisições organizadas por pasta (Calculadora, NFes XML e SOAP, SEFAZ), cada uma com descrição e testes da resposta.
+
+O protocolo de autorização usa a chave e o `DigestValue` da nota enviada, então o seu emissor recebe um retorno coerente com o XML que mandou. Todos os cenários, os XMLs de exemplo, a coleção do Postman, como apontar o seu emissor para o mock e como criar cenários novos estão em [docs/wiremock.md](docs/wiremock.md).
 
 ## O que é calculado localmente
 

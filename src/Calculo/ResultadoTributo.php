@@ -4,30 +4,32 @@ declare(strict_types=1);
 
 namespace DuNf\ReformaTributaria\Calculo;
 
+use DuNf\ReformaTributaria\Suporte\Decimal;
+
 /**
  * Resultado de um tributo do item (IBS UF, IBS municipal ou CBS), com os valores ja publicados.
  */
 final class ResultadoTributo
 {
-    private string $aliquota;
+    private Decimal $aliquota;
 
-    private ?string $percentualReducao;
+    private ?Decimal $percentualReducao;
 
-    private ?string $aliquotaEfetiva;
+    private ?Decimal $aliquotaEfetiva;
 
-    private ?string $percentualDiferimento;
+    private ?Decimal $percentualDiferimento;
 
-    private ?string $valorDiferimento;
+    private ?Decimal $valorDiferimento;
 
-    private string $valor;
+    private Decimal $valor;
 
-    public function __construct(
-        string $aliquota,
-        ?string $percentualReducao,
-        ?string $aliquotaEfetiva,
-        ?string $percentualDiferimento,
-        ?string $valorDiferimento,
-        string $valor
+    private function __construct(
+        Decimal $aliquota,
+        ?Decimal $percentualReducao,
+        ?Decimal $aliquotaEfetiva,
+        ?Decimal $percentualDiferimento,
+        ?Decimal $valorDiferimento,
+        Decimal $valor
     ) {
         $this->aliquota = $aliquota;
         $this->percentualReducao = $percentualReducao;
@@ -38,11 +40,39 @@ final class ResultadoTributo
     }
 
     /**
+     * Calcula o tributo com a politica numerica da Calculadora de Tributos oficial (ADR003):
+     * - pAliqEfet = arred4(aliquota publicada x (1 - pRedAliq / 100));
+     * - valor = arred2(vBC x aliquota aplicada / 100);
+     * - vDif = arred2(vBC x aliquota aplicada / 100 x pDif / 100) e valor devido = valor - vDif.
+     */
+    public static function calcular(
+        Decimal $baseCalculo,
+        Decimal $aliquota,
+        ?Decimal $percentualReducao,
+        ?Decimal $percentualDiferimento
+    ): self {
+        $aliquotaPublicada = $aliquota->aliquotaFiscal();
+        $aliquotaEfetiva = self::calcularAliquotaEfetiva($aliquotaPublicada, $percentualReducao);
+        $valorBruto = $baseCalculo->percentual($aliquotaEfetiva ?? $aliquotaPublicada);
+        $valorDiferimento = self::calcularValorDiferimento($valorBruto, $percentualDiferimento);
+        $valor = $valorBruto->valorFiscal()->subtrair($valorDiferimento ?? Decimal::zero())->valorFiscal();
+
+        return new self(
+            $aliquotaPublicada,
+            self::publicarPercentual($percentualReducao),
+            $aliquotaEfetiva,
+            self::publicarPercentual($percentualDiferimento),
+            $valorDiferimento,
+            $valor
+        );
+    }
+
+    /**
      * Aliquota nominal (pIBSUF, pIBSMun ou pCBS).
      */
     public function aliquota(): string
     {
-        return $this->aliquota;
+        return (string) $this->aliquota;
     }
 
     /**
@@ -50,7 +80,7 @@ final class ResultadoTributo
      */
     public function percentualReducao(): ?string
     {
-        return $this->percentualReducao;
+        return self::texto($this->percentualReducao);
     }
 
     /**
@@ -58,7 +88,12 @@ final class ResultadoTributo
      */
     public function aliquotaEfetiva(): ?string
     {
-        return $this->aliquotaEfetiva;
+        return self::texto($this->aliquotaEfetiva);
+    }
+
+    public function possuiReducao(): bool
+    {
+        return $this->percentualReducao !== null;
     }
 
     /**
@@ -66,7 +101,7 @@ final class ResultadoTributo
      */
     public function percentualDiferimento(): ?string
     {
-        return $this->percentualDiferimento;
+        return self::texto($this->percentualDiferimento);
     }
 
     /**
@@ -74,7 +109,12 @@ final class ResultadoTributo
      */
     public function valorDiferimento(): ?string
     {
-        return $this->valorDiferimento;
+        return self::texto($this->valorDiferimento);
+    }
+
+    public function possuiDiferimento(): bool
+    {
+        return $this->percentualDiferimento !== null;
     }
 
     /**
@@ -82,6 +122,34 @@ final class ResultadoTributo
      */
     public function valor(): string
     {
-        return $this->valor;
+        return (string) $this->valor;
+    }
+
+    private static function calcularAliquotaEfetiva(Decimal $aliquotaPublicada, ?Decimal $percentualReducao): ?Decimal
+    {
+        if ($percentualReducao === null) {
+            return null;
+        }
+
+        return $aliquotaPublicada->multiplicar($percentualReducao->fatorRestante())->aliquotaFiscal();
+    }
+
+    private static function calcularValorDiferimento(Decimal $valorBruto, ?Decimal $percentualDiferimento): ?Decimal
+    {
+        if ($percentualDiferimento === null) {
+            return null;
+        }
+
+        return $valorBruto->percentual($percentualDiferimento)->valorFiscal();
+    }
+
+    private static function publicarPercentual(?Decimal $percentual): ?Decimal
+    {
+        return $percentual === null ? null : $percentual->aliquotaFiscal();
+    }
+
+    private static function texto(?Decimal $valor): ?string
+    {
+        return $valor === null ? null : (string) $valor;
     }
 }

@@ -4,23 +4,29 @@ declare(strict_types=1);
 
 namespace DuNf\ReformaTributaria\Calculo;
 
+use DuNf\ReformaTributaria\Suporte\Decimal;
+use DuNf\ReformaTributaria\Tributo;
+
 /**
  * Totais do grupo IBSCBSTot (W03). Cada total e a soma dos valores publicados nos itens,
  * como exige a validacao da SEFAZ (rejeicao 1091 quando o total difere da soma dos itens).
  */
 final class TotaisIbsCbs
 {
-    /** @var array<string, string> */
-    private array $valores;
+    private Decimal $baseCalculo;
+
+    /** @var array<string, TotalTributo> */
+    private array $tributos;
 
     private bool $possuiValores;
 
     /**
-     * @param array<string, string> $valores
+     * @param array<string, TotalTributo> $tributos
      */
-    private function __construct(array $valores, bool $possuiValores)
+    private function __construct(Decimal $baseCalculo, array $tributos, bool $possuiValores)
     {
-        $this->valores = $valores;
+        $this->baseCalculo = $baseCalculo;
+        $this->tributos = $tributos;
         $this->possuiValores = $possuiValores;
     }
 
@@ -29,29 +35,13 @@ final class TotaisIbsCbs
      */
     public static function somar(array $itens): self
     {
-        $campos = [
-            'vBCIBSCBS', 'vDifIBSUF', 'vIBSUF', 'vDifIBSMun', 'vIBSMun', 'vIBS', 'vDifCBS', 'vCBS',
-        ];
-        $valores = array_fill_keys($campos, '0.00');
-        $possuiGrupo = false;
+        $comGrupo = array_filter($itens, static fn (ResultadoItem $item): bool => $item->possuiGrupoIbsCbs());
 
-        foreach ($itens as $item) {
-            if (!$item->possuiGrupoIbsCbs()) {
-                continue;
-            }
-
-            $possuiGrupo = true;
-            $valores['vBCIBSCBS'] = bcadd($valores['vBCIBSCBS'], (string) $item->baseCalculo(), 2);
-            $valores['vDifIBSUF'] = bcadd($valores['vDifIBSUF'], $item->ibsUf()->valorDiferimento() ?? '0', 2);
-            $valores['vIBSUF'] = bcadd($valores['vIBSUF'], $item->ibsUf()->valor(), 2);
-            $valores['vDifIBSMun'] = bcadd($valores['vDifIBSMun'], $item->ibsMun()->valorDiferimento() ?? '0', 2);
-            $valores['vIBSMun'] = bcadd($valores['vIBSMun'], $item->ibsMun()->valor(), 2);
-            $valores['vIBS'] = bcadd($valores['vIBS'], (string) $item->valorIbs(), 2);
-            $valores['vDifCBS'] = bcadd($valores['vDifCBS'], $item->cbs()->valorDiferimento() ?? '0', 2);
-            $valores['vCBS'] = bcadd($valores['vCBS'], $item->cbs()->valor(), 2);
-        }
-
-        return new self($valores, $possuiGrupo);
+        return array_reduce(
+            $comGrupo,
+            static fn (self $totais, ResultadoItem $item): self => $totais->acumular($item),
+            self::zerados()
+        );
     }
 
     /**
@@ -64,41 +54,80 @@ final class TotaisIbsCbs
 
     public function baseCalculo(): string
     {
-        return $this->valores['vBCIBSCBS'];
+        return (string) $this->baseCalculo->valorFiscal();
+    }
+
+    /**
+     * Soma do valor devido do tributo nos itens (vIBSUF, vIBSMun ou vCBS).
+     */
+    public function valor(Tributo $tributo): string
+    {
+        return (string) $this->tributos[$tributo->codigo()]->valor();
+    }
+
+    /**
+     * Soma do valor diferido do tributo nos itens (vDif).
+     */
+    public function diferimento(Tributo $tributo): string
+    {
+        return (string) $this->tributos[$tributo->codigo()]->diferimento();
     }
 
     public function diferimentoIbsUf(): string
     {
-        return $this->valores['vDifIBSUF'];
+        return $this->diferimento(Tributo::ibsUf());
     }
 
     public function ibsUf(): string
     {
-        return $this->valores['vIBSUF'];
+        return $this->valor(Tributo::ibsUf());
     }
 
     public function diferimentoIbsMun(): string
     {
-        return $this->valores['vDifIBSMun'];
+        return $this->diferimento(Tributo::ibsMun());
     }
 
     public function ibsMun(): string
     {
-        return $this->valores['vIBSMun'];
+        return $this->valor(Tributo::ibsMun());
     }
 
+    /**
+     * vIBS = vIBSUF + vIBSMun.
+     */
     public function ibs(): string
     {
-        return $this->valores['vIBS'];
+        return (string) Decimal::de($this->ibsUf())->somar($this->ibsMun())->valorFiscal();
     }
 
     public function diferimentoCbs(): string
     {
-        return $this->valores['vDifCBS'];
+        return $this->diferimento(Tributo::cbs());
     }
 
     public function cbs(): string
     {
-        return $this->valores['vCBS'];
+        return $this->valor(Tributo::cbs());
+    }
+
+    private static function zerados(): self
+    {
+        $tributos = [];
+        foreach (Tributo::todos() as $tributo) {
+            $tributos[$tributo->codigo()] = TotalTributo::zerado();
+        }
+
+        return new self(Decimal::zero(), $tributos, false);
+    }
+
+    private function acumular(ResultadoItem $item): self
+    {
+        $tributos = [];
+        foreach ($this->tributos as $codigo => $total) {
+            $tributos[$codigo] = $total->acumular($item->tributo(Tributo::deCodigo($codigo)));
+        }
+
+        return new self($this->baseCalculo->somar((string) $item->baseCalculo()), $tributos, true);
     }
 }

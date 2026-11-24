@@ -16,8 +16,15 @@ Somente o dono do repositório envia commits direto para a `main`.
 ## Regras de código
 
 - **Compatibilidade**: o código precisa rodar do PHP 7.4 ao 8.5. Não use recursos de PHP 8 (`match`, enums, promoção de propriedades no construtor, union types, named arguments, `readonly`, nullsafe `?->`, `str_contains` e similares). O `composer lint` usa o PHPCompatibility para conferir.
-- **Padrão**: PSR-12, `declare(strict_types=1)` em todo arquivo, classes `final` sempre que possível, propriedades tipadas.
-- **Números**: valores fiscais são `string` e toda conta passa por `Suporte\Numero` (bcmath). Nunca use `float` em cálculo.
+- **Padrão**: PSR-1, PSR-4 e PSR-12, `declare(strict_types=1)` em todo arquivo, classes `final` sempre que possível, propriedades tipadas.
+- **Números**: toda conta passa pelo value object `Suporte\Decimal` (bcmath, imutável). Nunca use `float` em cálculo. Na API pública, os valores publicados saem como `string`, já no formato do documento fiscal.
+- **Sem primitivos soltos**: conceitos do domínio são value objects com construtores nomeados (`Tributo::cbs()`, `Natureza::bem()`, `ModeloDocumento::nfe()`, `Vigencia`). Não passe `'bem'`, `55` ou `'cbs'` pelo código.
+- **Um tributo, uma regra**: IBS estadual, IBS municipal e CBS têm a mesma regra de cálculo. Percorra `Tributo::todos()` em vez de repetir o código três vezes.
+- **Diga, não pergunte**: peça ao objeto o que ele sabe (`$item->aliquotaInformada($tributo)`, `$situacao->exigeReducao()`) em vez de encadear getters (`$item->aliquotas()->cbs()`).
+- **Métodos pequenos**: um nível de indentação sempre que possível, sem `else` (use retorno antecipado), nomes por extenso.
+- **Injeção de dependência**: classes que leem dados (`Cronograma`, `CalculadoraBaseCalculo`, tabelas) aceitam os dados no construtor; com `null`, carregam os oficiais do pacote. Use isso nos testes em vez de mexer nos arquivos de `resources/`.
+- **Resultados imutáveis**: objetos de resultado são criados só por construtores nomeados (`ResultadoItem::comGrupoIbsCbs()`, `ResultadoTributo::calcular()`) e não têm setters.
+- **Classes internas**: classes marcadas com `@internal` (ex.: `Enquadramento`, `Bases`, `ConstrutorXml`) podem mudar sem aviso. Não dependa delas fora do pacote.
 - **Arredondamento**: siga a política da calculadora oficial (ADR003). Arredonde só o número publicado e use o valor publicado na conta seguinte.
 - **Simplicidade**: siga o padrão do arquivo que você está alterando. Não crie `try/catch` genérico para esconder erro, validações fora do padrão do projeto ou condições que só existem para um caso.
 - **Erros**: lance as exceções do pacote (`DadoInvalidoException`, `RegraNaoEncontradaException`, `OperacaoNaoSuportadaException`). Mensagens em português, dizendo o que fazer.
@@ -61,7 +68,7 @@ Abra o PR em uma branch `regra/` com a versão da base (`versaoBaseDados`) no t�
 Para tirar um CST da lista de não suportados:
 
 1. Leia a regra na NT 2025.002 e no código da calculadora oficial.
-2. Implemente em `src/Calculo/` seguindo o padrão de `CalculadoraIbsCbs`.
+2. Implemente em `src/Calculo/`: as regras de compatibilidade do CST ficam em `Enquadramento` e a conta de cada tributo em `ResultadoTributo::calcular()`.
 3. Escreva testes com valores conferidos na calculadora oficial (informe a entrada e a resposta no PR).
 4. Se o caso gera um grupo XML novo, valide contra o XSD em `tests/Fixtures/xsd`.
 5. Atualize a tabela "O que é calculado localmente" do README.

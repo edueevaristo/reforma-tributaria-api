@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DuNf\ReformaTributaria\BaseCalculo;
 
-use DuNf\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Suporte\Decimal;
 
 /**
  * Valores do item usados na base de calculo, com o nome das tags da NF-e.
@@ -13,22 +13,20 @@ use DuNf\ReformaTributaria\Suporte\Numero;
  */
 final class ComponentesBaseCalculo
 {
-    /** @var array<string, string> */
-    private array $valores = [];
+    /** @var array<string, Decimal> */
+    private array $valores;
 
     /**
      * @param array<string, int|float|string> $valores
      */
     public function __construct(array $valores)
     {
-        foreach ($valores as $tag => $valor) {
-            $this->valores[$tag] = Numero::normalizar($valor);
-        }
+        $this->valores = array_map([Decimal::class, 'de'], $valores);
     }
 
     public function valor(string $tag): string
     {
-        return $this->valores[$tag] ?? '0';
+        return (string) ($this->valores[$tag] ?? Decimal::zero());
     }
 
     /**

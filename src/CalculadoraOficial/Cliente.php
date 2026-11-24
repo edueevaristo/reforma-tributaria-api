@@ -18,6 +18,14 @@ final class Cliente
 {
     public const URL_PADRAO = 'http://localhost:8080/api/calculadora';
 
+    private const FORMATO_DATA = 'Y-m-d';
+
+    private const JSON = 'application/json';
+
+    private const XML = 'application/xml';
+
+    private const OPCOES_JSON = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRESERVE_ZERO_FRACTION;
+
     private string $urlBase;
 
     private TransporteHttp $transporte;
@@ -71,8 +79,8 @@ final class Cliente
     {
         $resposta = $this->enviar(
             'POST',
-            '/xml/generate?tipo=' . rawurlencode($tipoDocumento),
-            ['Content-Type' => 'application/json', 'Accept' => 'application/xml'],
+            $this->caminho('/xml/generate', ['tipo' => $tipoDocumento]),
+            ['Content-Type' => self::JSON, 'Accept' => self::XML],
             $this->codificar($resultadoCalculo)
         );
 
@@ -88,8 +96,8 @@ final class Cliente
     {
         $this->enviar(
             'POST',
-            '/xml/validate?tipo=' . rawurlencode($tipoDocumento) . '&subtipo=' . rawurlencode($subtipo),
-            ['Content-Type' => 'application/xml'],
+            $this->caminho('/xml/validate', ['tipo' => $tipoDocumento, 'subtipo' => $subtipo]),
+            ['Content-Type' => self::XML],
             $xml
         );
 
@@ -103,11 +111,10 @@ final class Cliente
      */
     public function consultarClassificacaoTributaria(string $codigo, \DateTimeInterface $data): array
     {
-        return $this->json(
-            'GET',
-            '/dados-abertos/classificacoes-tributarias/cbs-ibs/class-trib/' . rawurlencode($codigo)
-                . '?data=' . $data->format('Y-m-d')
-        );
+        return $this->json('GET', $this->caminho(
+            '/dados-abertos/classificacoes-tributarias/cbs-ibs/class-trib/' . rawurlencode($codigo),
+            ['data' => $data->format(self::FORMATO_DATA)]
+        ));
     }
 
     /**
@@ -117,7 +124,10 @@ final class Cliente
      */
     public function consultarNcm(string $ncm, \DateTimeInterface $data): array
     {
-        return $this->json('GET', '/dados-abertos/ncm?ncm=' . rawurlencode($ncm) . '&data=' . $data->format('Y-m-d'));
+        return $this->json(
+            'GET',
+            $this->caminho('/dados-abertos/ncm', ['ncm' => $ncm, 'data' => $data->format(self::FORMATO_DATA)])
+        );
     }
 
     /**
@@ -139,7 +149,7 @@ final class Cliente
         $resposta = $this->enviar(
             $metodo,
             $caminho,
-            ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
+            ['Content-Type' => self::JSON, 'Accept' => self::JSON],
             $corpo === null ? null : $this->codificar($corpo)
         );
 
@@ -163,7 +173,7 @@ final class Cliente
     {
         $resposta = $this->transporte->enviar($metodo, $this->urlBase . $caminho, $cabecalhos, $corpo);
 
-        if ($resposta->status() < 200 || $resposta->status() >= 300) {
+        if (!$resposta->sucesso()) {
             throw new ErroCalculadoraOficialException(
                 sprintf('Calculadora de Tributos respondeu HTTP %d em %s %s.', $resposta->status(), $metodo, $caminho),
                 $resposta->status(),
@@ -175,11 +185,19 @@ final class Cliente
     }
 
     /**
+     * @param array<string, string> $parametros
+     */
+    private function caminho(string $caminho, array $parametros): string
+    {
+        return $caminho . '?' . http_build_query($parametros, '', '&', PHP_QUERY_RFC3986);
+    }
+
+    /**
      * @param array<string, mixed> $dados
      */
     private function codificar(array $dados): string
     {
-        $json = json_encode($dados, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRESERVE_ZERO_FRACTION);
+        $json = json_encode($dados, self::OPCOES_JSON);
 
         if ($json === false) {
             throw new ErroCalculadoraOficialException(

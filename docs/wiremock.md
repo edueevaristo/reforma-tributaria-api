@@ -216,6 +216,48 @@ composer test
 
 O teste `XmlExemplosTest` valida todos os XMLs contra o schema oficial da NF-e, confere o dígito verificador da chave, o `DigestValue` e o total da CBS.
 
+## Coleção do Postman
+
+A pasta [`postman/`](../postman) tem a coleção **WireMock - ReformaTributária**, com todos os mocks. Cada requisição tem descrição (aba **Docs**) com o que faz e a resposta esperada, e testes que conferem o status HTTP e o `cStat`.
+
+| Pasta | Requisições |
+|---|---|
+| WireMock \| Administração | Health e requisições recebidas |
+| Calculadora \| Tributos | Regime geral (sucesso e NCM inválido), observabilidade, base de cálculo unificada, geração e validação de XML e consulta de cClassTrib |
+| NFes \| XML | Lista de exemplos e cada NF-e/NFC-e de exemplo (ex.: **NFe Xml Venda**, **NFe Xml Devolução**) |
+| NFes \| SOAP | Os mesmos exemplos no envelope SOAP (ex.: **NFe Soap Venda com Redução**, **NFCe Soap Venda**, **Evento Soap Cancelamento**) |
+| SEFAZ \| Autorização | A NF-e de venda em cada cenário: **Autorizado**, **Lento**, **Fora do Ar** e cada rejeição (ex.: **Rejeição 1091 \| Total de CBS difere da soma dos itens**) |
+| SEFAZ \| Status e Eventos | Status do serviço, cancelamento e carta de correção |
+| SEFAZ \| Enviar Exemplos | Todos os exemplos enviados ao cenário da variável `CENARIO` |
+
+Para usar:
+
+1. Suba o WireMock (`docker compose -f wiremock/docker-compose.yml up -d`).
+2. No Postman, clique em **Import** e escolha os dois arquivos da pasta `postman/`: a coleção e o ambiente `WireMock local`.
+3. Selecione o ambiente `WireMock local` e rode a coleção inteira com **Run collection**, ou só uma pasta.
+
+Variáveis do ambiente:
+
+- `BASE_URL`: endereço do WireMock (padrão `http://localhost:8089`).
+- `CENARIO`: cenário usado na pasta **SEFAZ | Enviar Exemplos** (padrão `autorizado`). Troque para `rejeicao-1091`, por exemplo, para ver todos os exemplos rejeitados.
+
+O cenário `lento` demora 15 segundos de propósito.
+
+Pela linha de comando, com o [Newman](https://www.npmjs.com/package/newman):
+
+```bash
+npx newman run postman/reforma-tributaria-wiremock.postman_collection.json \
+  -e postman/wiremock-local.postman_environment.json
+```
+
+A coleção é gerada a partir dos próprios mocks: os cenários vêm de `wiremock/mappings/sefaz` e os envelopes SOAP de `wiremock/__files/nfe/soap`. Não edite o JSON à mão. Depois de criar ou mudar um mock ou um XML de exemplo, gere de novo:
+
+```bash
+php bin/gerar-postman.php
+```
+
+O CI confere se a coleção está atualizada e roda ela inteira com o Newman contra o WireMock.
+
 ## Testes de integração
 
 Os testes de `tests/Integracao` usam os mocks e os XMLs de exemplo. Eles são ignorados quando a variável `WIREMOCK_URL` não está definida.
@@ -241,6 +283,7 @@ O CI do GitHub roda esses testes em todo push e pull request (job `integracao (W
 2. Se a resposta for longa, coloque o corpo em `wiremock/__files/` e use `bodyFileName`.
 3. Reinicie o WireMock: `docker compose -f wiremock/docker-compose.yml restart`.
 4. Adicione o teste em `tests/Integracao/`.
-5. Atualize as tabelas deste documento.
+5. Gere a coleção do Postman de novo: `php bin/gerar-postman.php`.
+6. Atualize as tabelas deste documento.
 
 Rejeições novas precisam citar a regra de validação da nota técnica (ex.: `W56-10`) no pull request.

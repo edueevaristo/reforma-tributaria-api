@@ -76,6 +76,17 @@ jobs:
           WIREMOCK_URL: http://localhost:8089
         run: vendor/bin/phpunit --testsuite integracao
 
+      - name: Colecao do Postman atualizada
+        run: |
+          php bin/gerar-postman.php
+          git diff --exit-code postman/
+
+      - name: Colecao do Postman (Newman)
+        run: |
+          npx --yes newman@6 run postman/reforma-tributaria-wiremock.postman_collection.json \
+            -e postman/wiremock-local.postman_environment.json \
+            --timeout-request 30000
+
       - name: Logs do WireMock
         if: failure()
         run: docker compose -f wiremock/docker-compose.yml logs

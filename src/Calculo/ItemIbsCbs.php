@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace DuNf\ReformaTributaria\Calculo;
 
-use DuNf\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Suporte\Decimal;
+use DuNf\ReformaTributaria\Tributo;
 
 /**
  * Dados de entrada de um item do documento fiscal.
@@ -17,7 +18,7 @@ final class ItemIbsCbs
 
     private string $classificacaoTributaria;
 
-    private string $baseCalculo;
+    private Decimal $baseCalculo;
 
     private Aliquotas $aliquotas;
 
@@ -37,7 +38,7 @@ final class ItemIbsCbs
         $this->numero = $numero;
         $this->cst = $cst;
         $this->classificacaoTributaria = $classificacaoTributaria;
-        $this->baseCalculo = Numero::normalizar($baseCalculo);
+        $this->baseCalculo = Decimal::de($baseCalculo);
         $this->aliquotas = $aliquotas ?? new Aliquotas();
         $this->diferimento = $diferimento;
     }
@@ -59,16 +60,35 @@ final class ItemIbsCbs
 
     public function baseCalculo(): string
     {
-        return $this->baseCalculo;
+        return (string) $this->baseCalculo;
     }
 
-    public function aliquotas(): Aliquotas
+    /**
+     * Base de calculo publicada (vBC): 2 casas, HALF_EVEN.
+     */
+    public function baseCalculoFiscal(): Decimal
     {
-        return $this->aliquotas;
+        return $this->baseCalculo->valorFiscal();
     }
 
-    public function diferimento(): ?Diferimento
+    /**
+     * Aliquota informada para o tributo, ou null para usar a fixada em lei.
+     */
+    public function aliquotaInformada(Tributo $tributo): ?Decimal
     {
-        return $this->diferimento;
+        return $this->aliquotas->de($tributo);
+    }
+
+    public function informouDiferimento(): bool
+    {
+        return $this->diferimento !== null;
+    }
+
+    /**
+     * Percentual de diferimento do tributo, ou null quando o item nao tem diferimento.
+     */
+    public function percentualDiferimento(Tributo $tributo): ?Decimal
+    {
+        return $this->diferimento === null ? null : $this->diferimento->de($tributo);
     }
 }

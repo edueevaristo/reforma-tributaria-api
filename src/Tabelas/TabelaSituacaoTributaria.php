@@ -7,34 +7,51 @@ namespace DuNf\ReformaTributaria\Tabelas;
 use DuNf\ReformaTributaria\Excecao\RegraNaoEncontradaException;
 
 /**
- * Tabela de CST do IBS e da CBS (resources/dados/cst-ibs-cbs.json).
+ * Tabela de CST do IBS e da CBS (resources/dados/cst-ibs-cbs.json) ou do Imposto Seletivo (cst-is.json).
  */
 final class TabelaSituacaoTributaria
 {
-    /** @var array<int, array<string, mixed>> */
-    private array $registros;
+    private const ARQUIVO_IBS_CBS = 'cst-ibs-cbs';
+    private const ARQUIVO_IMPOSTO_SELETIVO = 'cst-is';
+
+    /** @var RegistrosVigentes<SituacaoTributaria> */
+    private RegistrosVigentes $registros;
 
     /** @var array<string, string> */
     private array $meta;
 
-    public function __construct()
+    /**
+     * @param array{meta: array<string, string>, dados: array<int, array<string, mixed>>}|null $arquivo
+     *        Use null para carregar a tabela oficial de CST do IBS e da CBS.
+     */
+    public function __construct(?array $arquivo = null)
     {
-        $arquivo = ArquivoDados::ler('cst-ibs-cbs');
-        $this->registros = $arquivo['dados'];
+        $arquivo ??= ArquivoDados::ler(self::ARQUIVO_IBS_CBS);
+        $this->registros = new RegistrosVigentes(
+            array_map([SituacaoTributaria::class, 'deRegistro'], $arquivo['dados'])
+        );
         $this->meta = $arquivo['meta'];
+    }
+
+    /**
+     * Tabela de CST do Imposto Seletivo.
+     */
+    public static function impostoSeletivo(): self
+    {
+        return new self(ArquivoDados::ler(self::ARQUIVO_IMPOSTO_SELETIVO));
     }
 
     public function buscar(string $codigo, \DateTimeInterface $data): SituacaoTributaria
     {
-        foreach ($this->registros as $registro) {
-            if ($registro['codigo'] === $codigo && ArquivoDados::vigente($registro, $data)) {
-                return new SituacaoTributaria($registro);
-            }
+        $situacao = $this->registros->buscar($codigo, $data);
+
+        if ($situacao === null) {
+            throw new RegraNaoEncontradaException(
+                sprintf('CST %s nao encontrado ou fora de vigencia em %s.', $codigo, $data->format('Y-m-d'))
+            );
         }
 
-        throw new RegraNaoEncontradaException(
-            sprintf('CST %s nao encontrado ou fora de vigencia em %s.', $codigo, $data->format('Y-m-d'))
-        );
+        return $situacao;
     }
 
     /**
@@ -42,14 +59,7 @@ final class TabelaSituacaoTributaria
      */
     public function listar(\DateTimeInterface $data): array
     {
-        $lista = [];
-        foreach ($this->registros as $registro) {
-            if (ArquivoDados::vigente($registro, $data)) {
-                $lista[] = new SituacaoTributaria($registro);
-            }
-        }
-
-        return $lista;
+        return $this->registros->vigentes($data);
     }
 
     /**

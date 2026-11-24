@@ -5,39 +5,73 @@ declare(strict_types=1);
 namespace DuNf\ReformaTributaria\Tabelas;
 
 /**
- * CST do IBS e da CBS.
+ * CST do IBS e da CBS (ou do Imposto Seletivo).
  */
-final class SituacaoTributaria
+final class SituacaoTributaria implements RegistroVigente
 {
-    /** @var array<string, mixed> */
-    private array $registro;
+    public const GRUPO_IBSCBS = 'gIBSCBS';
+    public const GRUPO_REDUCAO = 'gRed';
+    public const GRUPO_DIFERIMENTO = 'gDif';
+
+    /** Grupos que substituem o gIBSCBS no item (monofasia, transferencia de credito, ZFM e ajuste). */
+    public const GRUPOS_SUBSTITUTOS = ['gIBSCBSMono', 'gTransfCred', 'gCredPresIBSZFM', 'gAjusteCompet'];
+
+    private string $codigo;
+
+    private string $descricao;
+
+    private Vigencia $vigencia;
+
+    /** @var array<string, bool> */
+    private array $grupos;
 
     /**
-     * @param array<string, mixed> $registro
+     * @param array<string, bool> $grupos
      */
-    public function __construct(array $registro)
+    public function __construct(string $codigo, string $descricao, Vigencia $vigencia, array $grupos)
     {
-        $this->registro = $registro;
+        $this->codigo = $codigo;
+        $this->descricao = $descricao;
+        $this->vigencia = $vigencia;
+        $this->grupos = $grupos;
+    }
+
+    /**
+     * @param array<string, mixed> $registro Registro de resources/dados/cst-*.json
+     */
+    public static function deRegistro(array $registro): self
+    {
+        return new self(
+            (string) $registro['codigo'],
+            (string) $registro['descricao'],
+            Vigencia::deRegistro($registro),
+            $registro['grupos'] ?? []
+        );
     }
 
     public function codigo(): string
     {
-        return $this->registro['codigo'];
+        return $this->codigo;
     }
 
     public function descricao(): string
     {
-        return $this->registro['descricao'];
+        return $this->descricao;
     }
 
     public function inicioVigencia(): string
     {
-        return $this->registro['inicioVigencia'];
+        return $this->vigencia->inicio();
     }
 
     public function fimVigencia(): ?string
     {
-        return $this->registro['fimVigencia'];
+        return $this->vigencia->fim();
+    }
+
+    public function vigenteEm(\DateTimeInterface $data): bool
+    {
+        return $this->vigencia->abrange($data);
     }
 
     /**
@@ -46,6 +80,31 @@ final class SituacaoTributaria
      */
     public function exigeGrupo(string $grupo): bool
     {
-        return !empty($this->registro['grupos'][$grupo]);
+        return $this->grupos[$grupo] ?? false;
+    }
+
+    public function possuiGrupoIbsCbs(): bool
+    {
+        return $this->exigeGrupo(self::GRUPO_IBSCBS);
+    }
+
+    public function exigeReducao(): bool
+    {
+        return $this->exigeGrupo(self::GRUPO_REDUCAO);
+    }
+
+    public function exigeDiferimento(): bool
+    {
+        return $this->exigeGrupo(self::GRUPO_DIFERIMENTO);
+    }
+
+    /**
+     * Grupo que substitui o gIBSCBS neste CST, ou null quando o item usa o gIBSCBS.
+     */
+    public function grupoSubstituto(): ?string
+    {
+        $exigidos = array_filter(self::GRUPOS_SUBSTITUTOS, fn (string $grupo): bool => $this->exigeGrupo($grupo));
+
+        return $exigidos === [] ? null : reset($exigidos);
     }
 }

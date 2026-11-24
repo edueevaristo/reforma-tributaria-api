@@ -61,4 +61,24 @@ final class ClienteTest extends TestCase
         self::assertTrue($cliente->validarXml('<IBSCBS/>'));
         self::assertStringEndsWith('/xml/validate?tipo=nfe&subtipo=grupo', $transporte->url);
     }
+
+    public function testConsultaNcmComParametrosCodificados(): void
+    {
+        $transporte = new TransporteFalso(new RespostaHttp(200, '{}'));
+        $cliente = new Cliente(Cliente::URL_PADRAO, $transporte);
+
+        $cliente->consultarNcm('2203.00 00', new \DateTimeImmutable('2027-01-01'));
+
+        self::assertStringEndsWith('/dados-abertos/ncm?ncm=2203.00%2000&data=2027-01-01', $transporte->url);
+        self::assertSame('GET', $transporte->metodo);
+        self::assertNull($transporte->corpo);
+    }
+
+    public function testRespostaQueNaoEJsonLancaExcecao(): void
+    {
+        $cliente = new Cliente(Cliente::URL_PADRAO, new TransporteFalso(new RespostaHttp(200, '<html>')));
+
+        $this->expectException(ErroCalculadoraOficialException::class);
+        $cliente->consultar('dados-abertos/versao');
+    }
 }

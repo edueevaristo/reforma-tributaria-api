@@ -4,12 +4,29 @@ Todas as mudanças relevantes deste projeto. O formato segue o [Keep a Changelog
 
 ## [Não publicado]
 
-## [0.3.0] - 2026-11-23
+## [0.3.0] - 2026-11-24
+
+### Adicionado
+
+- Coleção do Postman **WireMock - ReformaTributária** (`postman/`) com todos os mocks WireMock, organizada por pasta, com descrição e testes de cada resposta, gerada por `bin/gerar-postman.php`. O CI confere se ela está atualizada e roda ela inteira com o Newman.
+- `TransportePsr18`: usa qualquer cliente HTTP PSR-18 (Guzzle, Symfony HttpClient) no cliente da Calculadora de Tributos oficial.
+- Tabelas de CST e cClassTrib do Imposto Seletivo: `TabelaSituacaoTributaria::impostoSeletivo()` e `TabelaClassificacaoTributaria::impostoSeletivo()`.
+- Value object `Tributo` (`Tributo::ibsUf()`, `Tributo::ibsMun()`, `Tributo::cbs()`, `Tributo::todos()`) e métodos por tributo: `ResultadoItem::tributo()`, `TotaisIbsCbs::valor()` e `diferimento()`, `AnoTransicao::aliquota()` e `ClassificacaoTributaria::percentualReducao()`.
+- Value objects `Natureza` e `ModeloDocumento` para a base de cálculo.
+- Tabelas aceitam os dados no construtor, para testes com dados próprios.
 
 ### Alterado
 
-- **Quebra de compatibilidade:** o pacote passa a se chamar `du-nf/reforma-tributaria` no Packagist (antes `edueevaristo/reforma-tributaria-api`).
-- **Quebra de compatibilidade:** o namespace passa a ser `DuNf\ReformaTributaria` (antes `EduardoEvaristo\ReformaTributaria`). Nenhuma classe ou método mudou de nome. Veja a seção "Migrando" do README.
+- `CalculadoraBaseCalculo::calcular()` recebe `Natureza` e `ModeloDocumento` em vez de `string` e `int`. As constantes `NATUREZA_BEM`, `NATUREZA_SERVICO`, `MODELO_NFE` e `MODELO_NFCE` saíram.
+- A aritmética decimal passou para o value object imutável `Suporte\Decimal`, que substitui a classe estática `Suporte\Numero`.
+- `ResultadoItem` e `ResultadoTributo` são criados só pelos construtores nomeados `ResultadoItem::semGrupoIbsCbs()`, `ResultadoItem::comGrupoIbsCbs()` e `ResultadoTributo::calcular()`.
+- Código reorganizado segundo PSR-12, Clean Code e Object Calisthenics. Os valores calculados não mudaram: a saída foi conferida em mais de 3.300 cálculos e nos XMLs de exemplo.
+
+### Removido
+
+- `Suporte\Numero` (use `Suporte\Decimal`).
+- Getters `Aliquotas::cbs()`, `ibsUf()`, `ibsMun()`, `Diferimento::cbs()`, `ibsUf()`, `ibsMun()`, `ItemIbsCbs::aliquotas()` e `ItemIbsCbs::diferimento()`. Use `Aliquotas::de(Tributo)`, `Diferimento::de(Tributo)`, `ItemIbsCbs::aliquotaInformada(Tributo)` e `ItemIbsCbs::percentualDiferimento(Tributo)`.
+- `ArquivoDados::vigente()` (use `Vigencia::abrange()`).
 
 ## [0.2.0] - 2026-11-23
 

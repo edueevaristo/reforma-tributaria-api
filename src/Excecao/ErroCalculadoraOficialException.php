@@ -13,9 +13,13 @@ class ErroCalculadoraOficialException extends ReformaTributariaException
 
     private string $corpoResposta;
 
-    public function __construct(string $mensagem, int $statusHttp = 0, string $corpoResposta = '')
-    {
-        parent::__construct($mensagem, $statusHttp);
+    public function __construct(
+        string $mensagem,
+        int $statusHttp = 0,
+        string $corpoResposta = '',
+        ?\Throwable $anterior = null
+    ) {
+        parent::__construct($mensagem, $statusHttp, $anterior);
         $this->statusHttp = $statusHttp;
         $this->corpoResposta = $corpoResposta;
     }

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace DuNf\ReformaTributaria\Transicao;
 
+use DuNf\ReformaTributaria\Suporte\Decimal;
+use DuNf\ReformaTributaria\Tributo;
+
 /**
  * Regras de um ano do cronograma de transicao.
  */
@@ -75,6 +78,21 @@ final class AnoTransicao
         return $this->ajusteCbsPontosPercentuais;
     }
 
+    /**
+     * Aliquota do tributo fixada em lei para o ano, ou null quando precisa ser informada
+     * (aliquota de referencia do Senado ou lei do ente).
+     */
+    public function aliquota(Tributo $tributo): ?Decimal
+    {
+        $aliquotas = [
+            Tributo::cbs()->codigo() => $this->aliquotaCbs,
+            Tributo::ibsUf()->codigo() => $this->aliquotaIbsUf,
+            Tributo::ibsMun()->codigo() => $this->aliquotaIbsMun,
+        ];
+
+        return Decimal::deOpcional($aliquotas[$tributo->codigo()]);
+    }
+
     public function aliquotaIbsUf(): ?string
     {
         return $this->aliquotaIbsUf;
@@ -105,7 +123,7 @@ final class AnoTransicao
 
     public function icmsIssVigentes(): bool
     {
-        return $this->percentualIcmsIss !== '0';
+        return !Decimal::de($this->percentualIcmsIss)->ehZero();
     }
 
     /**

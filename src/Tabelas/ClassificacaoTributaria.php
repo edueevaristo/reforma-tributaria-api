@@ -4,35 +4,89 @@ declare(strict_types=1);
 
 namespace DuNf\ReformaTributaria\Tabelas;
 
+use DuNf\ReformaTributaria\Suporte\Decimal;
+use DuNf\ReformaTributaria\Tributo;
+
 /**
- * Classificacao tributaria (cClassTrib) do IBS e da CBS.
+ * Classificacao tributaria (cClassTrib) do IBS e da CBS (ou do Imposto Seletivo).
  */
-final class ClassificacaoTributaria
+final class ClassificacaoTributaria implements RegistroVigente
 {
-    /** @var array<string, mixed> */
-    private array $registro;
+    /** Tipo de aliquota calculado localmente. Os demais exigem tabela propria. */
+    public const TIPO_ALIQUOTA_PADRAO = 'Padrão';
+
+    private string $codigo;
+
+    private string $cst;
+
+    private string $descricao;
+
+    private string $tipoAliquota;
+
+    private ?string $nomenclatura;
+
+    private ?string $anexo;
+
+    private Vigencia $vigencia;
+
+    /** @var array<string, Decimal> */
+    private array $percentuaisReducao;
+
+    /** @var array<string, bool> */
+    private array $creditoAdquirente;
 
     /**
-     * @param array<string, mixed> $registro
+     * @param array<string, mixed> $registro Registro de resources/dados/cclasstrib-*.json
      */
-    public function __construct(array $registro)
+    private function __construct(array $registro)
     {
-        $this->registro = $registro;
+        $reducao = $registro['percentualReducao'] ?? [];
+        $credito = $registro['apropriacaoCreditoAdquirente'] ?? [];
+
+        $this->codigo = (string) $registro['codigo'];
+        $this->cst = (string) $registro['cst'];
+        $this->descricao = (string) $registro['descricao'];
+        $this->tipoAliquota = (string) $registro['tipoAliquota'];
+        $this->nomenclatura = $registro['nomenclatura'] ?? null;
+        $this->anexo = $registro['anexo'] ?? null;
+        $this->vigencia = Vigencia::deRegistro($registro);
+        $this->percentuaisReducao = [
+            Tributo::cbs()->codigo() => Decimal::de($reducao['cbs'] ?? 0),
+            Tributo::ibsUf()->codigo() => Decimal::de($reducao['ibsUf'] ?? 0),
+            Tributo::ibsMun()->codigo() => Decimal::de($reducao['ibsMun'] ?? 0),
+        ];
+        $this->creditoAdquirente = [
+            'cbs' => (bool) ($credito['cbs'] ?? false),
+            'ibs' => (bool) ($credito['ibs'] ?? false),
+        ];
+    }
+
+    /**
+     * @param array<string, mixed> $registro Registro de resources/dados/cclasstrib-*.json
+     */
+    public static function deRegistro(array $registro): self
+    {
+        return new self($registro);
     }
 
     public function codigo(): string
     {
-        return $this->registro['codigo'];
+        return $this->codigo;
     }
 
     public function cst(): string
     {
-        return $this->registro['cst'];
+        return $this->cst;
+    }
+
+    public function pertenceAoCst(string $cst): bool
+    {
+        return $this->cst === $cst;
     }
 
     public function descricao(): string
     {
-        return $this->registro['descricao'];
+        return $this->descricao;
     }
 
     /**
@@ -41,7 +95,12 @@ final class ClassificacaoTributaria
      */
     public function tipoAliquota(): string
     {
-        return $this->registro['tipoAliquota'];
+        return $this->tipoAliquota;
+    }
+
+    public function usaAliquotaPadrao(): bool
+    {
+        return $this->tipoAliquota === self::TIPO_ALIQUOTA_PADRAO;
     }
 
     /**
@@ -49,7 +108,7 @@ final class ClassificacaoTributaria
      */
     public function nomenclatura(): ?string
     {
-        return $this->registro['nomenclatura'];
+        return $this->nomenclatura;
     }
 
     /**
@@ -57,41 +116,60 @@ final class ClassificacaoTributaria
      */
     public function anexo(): ?string
     {
-        return $this->registro['anexo'];
+        return $this->anexo;
     }
 
     public function inicioVigencia(): string
     {
-        return $this->registro['inicioVigencia'];
+        return $this->vigencia->inicio();
     }
 
     public function fimVigencia(): ?string
     {
-        return $this->registro['fimVigencia'];
+        return $this->vigencia->fim();
+    }
+
+    public function vigenteEm(\DateTimeInterface $data): bool
+    {
+        return $this->vigencia->abrange($data);
+    }
+
+    /**
+     * Percentual de reducao (pRedAliq) do tributo. Sempre 0 nas classificacoes do Imposto Seletivo.
+     */
+    public function percentualReducao(Tributo $tributo): Decimal
+    {
+        return $this->percentuaisReducao[$tributo->codigo()];
     }
 
     public function percentualReducaoCbs(): string
     {
-        return (string) $this->registro['percentualReducao']['cbs'];
+        return (string) $this->percentualReducao(Tributo::cbs());
     }
 
     public function percentualReducaoIbsUf(): string
     {
-        return (string) $this->registro['percentualReducao']['ibsUf'];
+        return (string) $this->percentualReducao(Tributo::ibsUf());
     }
 
     public function percentualReducaoIbsMun(): string
     {
-        return (string) $this->registro['percentualReducao']['ibsMun'];
+        return (string) $this->percentualReducao(Tributo::ibsMun());
     }
 
+    /**
+     * Sempre false nas classificacoes do Imposto Seletivo.
+     */
     public function permiteCreditoCbsAdquirente(): bool
     {
-        return (bool) $this->registro['apropriacaoCreditoAdquirente']['cbs'];
+        return $this->creditoAdquirente['cbs'];
     }
 
+    /**
+     * Sempre false nas classificacoes do Imposto Seletivo.
+     */
     public function permiteCreditoIbsAdquirente(): bool
     {
-        return (bool) $this->registro['apropriacaoCreditoAdquirente']['ibs'];
+        return $this->creditoAdquirente['ibs'];
     }
 }

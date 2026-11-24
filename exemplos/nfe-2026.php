@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 use DuNf\ReformaTributaria\BaseCalculo\CalculadoraBaseCalculo;
 use DuNf\ReformaTributaria\BaseCalculo\ComponentesBaseCalculo;
+use DuNf\ReformaTributaria\BaseCalculo\ModeloDocumento;
+use DuNf\ReformaTributaria\BaseCalculo\Natureza;
 use DuNf\ReformaTributaria\Calculo\CalculadoraIbsCbs;
 use DuNf\ReformaTributaria\Calculo\ItemIbsCbs;
 use DuNf\ReformaTributaria\Xml\GeradorXmlNfe;
@@ -27,8 +29,8 @@ $base = (new CalculadoraBaseCalculo())->calcular(
         'vICMS' => '171.00',
     ]),
     2026,
-    CalculadoraBaseCalculo::NATUREZA_BEM,
-    CalculadoraBaseCalculo::MODELO_NFE
+    Natureza::bem(),
+    ModeloDocumento::nfe()
 );
 
 $documento = (new CalculadoraIbsCbs())->calcularDocumento([

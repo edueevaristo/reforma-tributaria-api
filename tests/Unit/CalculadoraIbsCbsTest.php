@@ -10,6 +10,8 @@ use DuNf\ReformaTributaria\Calculo\Diferimento;
 use DuNf\ReformaTributaria\Calculo\ItemIbsCbs;
 use DuNf\ReformaTributaria\Excecao\DadoInvalidoException;
 use DuNf\ReformaTributaria\Excecao\OperacaoNaoSuportadaException;
+use DuNf\ReformaTributaria\Tabelas\TabelaClassificacaoTributaria;
+use DuNf\ReformaTributaria\Tributo;
 use PHPUnit\Framework\TestCase;
 
 final class CalculadoraIbsCbsTest extends TestCase
@@ -144,6 +146,7 @@ final class CalculadoraIbsCbsTest extends TestCase
     public function testMonofasiaAindaNaoESuportada(): void
     {
         $this->expectException(OperacaoNaoSuportadaException::class);
+        $this->expectExceptionMessage('Item 1 (CST 620, cClassTrib 620001): o CST exige o grupo gIBSCBSMono.');
         $this->calculadora->calcularItem(
             new ItemIbsCbs(1, '620', '620001', '1000.00'),
             new \DateTimeImmutable('2027-01-15')
@@ -168,5 +171,62 @@ final class CalculadoraIbsCbsTest extends TestCase
         self::assertSame('0.24', $totais->ibsMun());
         self::assertSame('0.48', $totais->ibs());
         self::assertSame('42.25', $totais->cbs());
+    }
+
+    public function testTipoDeAliquotaSemTabelaPropriaNaoESuportado(): void
+    {
+        $this->expectException(OperacaoNaoSuportadaException::class);
+        $this->expectExceptionMessage('o tipo de aliquota "Uniforme setorial" exige tabela propria');
+
+        $tabela = new TabelaClassificacaoTributaria([
+            'meta' => [],
+            'dados' => [[
+                'codigo' => '000999',
+                'cst' => '000',
+                'descricao' => 'Classificacao de teste',
+                'tipoAliquota' => 'Uniforme setorial',
+                'inicioVigencia' => '2026-01-01',
+                'fimVigencia' => null,
+            ]],
+        ]);
+
+        (new CalculadoraIbsCbs(null, null, $tabela))->calcularItem(
+            new ItemIbsCbs(1, '000', '000999', '1000.00', new Aliquotas('8.8')),
+            new \DateTimeImmutable('2027-01-15')
+        );
+    }
+
+    public function testResultadoPorTributo(): void
+    {
+        $resultado = $this->calculadora->calcularItem(
+            new ItemIbsCbs(1, '000', '000001', '1000.00'),
+            new \DateTimeImmutable('2026-08-03')
+        );
+
+        self::assertSame($resultado->cbs(), $resultado->tributo(Tributo::cbs()));
+        self::assertFalse($resultado->cbs()->possuiReducao());
+        self::assertFalse($resultado->cbs()->possuiDiferimento());
+    }
+
+    public function testTotaisPorTributo(): void
+    {
+        $documento = $this->calculadora->calcularDocumento([
+            new ItemIbsCbs(1, '510', '510001', '1000.00', null, new Diferimento('100', '50', '0')),
+        ], new \DateTimeImmutable('2026-08-03'));
+
+        self::assertSame('9.00', $documento->totais()->diferimento(Tributo::cbs()));
+        self::assertSame('0.50', $documento->totais()->valor(Tributo::ibsUf()));
+        self::assertSame('0.50', $documento->totais()->diferimentoIbsUf());
+    }
+
+    public function testDocumentoSemGrupoIbsCbsTemTotaisZerados(): void
+    {
+        $totais = $this->calculadora->calcularDocumento([
+            new ItemIbsCbs(1, '410', '410001', '1000.00'),
+        ], new \DateTimeImmutable('2026-08-03'))->totais();
+
+        self::assertFalse($totais->possuiValores());
+        self::assertSame('0.00', $totais->baseCalculo());
+        self::assertSame('0.00', $totais->cbs());
     }
 }

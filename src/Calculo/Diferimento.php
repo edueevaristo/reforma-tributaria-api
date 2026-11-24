@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace DuNf\ReformaTributaria\Calculo;
 
-use DuNf\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Suporte\Decimal;
+use DuNf\ReformaTributaria\Tributo;
 
 /**
  * Percentuais de diferimento (pDif) por tributo, usados nos CST 510 e 515.
  */
 final class Diferimento
 {
-    private string $cbs;
-
-    private string $ibsUf;
-
-    private string $ibsMun;
+    /** @var array<string, Decimal> */
+    private array $porTributo;
 
     /**
      * @param int|float|string $cbs
@@ -24,23 +22,15 @@ final class Diferimento
      */
     public function __construct($cbs, $ibsUf, $ibsMun)
     {
-        $this->cbs = Numero::normalizar($cbs);
-        $this->ibsUf = Numero::normalizar($ibsUf);
-        $this->ibsMun = Numero::normalizar($ibsMun);
+        $this->porTributo = [
+            Tributo::cbs()->codigo() => Decimal::de($cbs),
+            Tributo::ibsUf()->codigo() => Decimal::de($ibsUf),
+            Tributo::ibsMun()->codigo() => Decimal::de($ibsMun),
+        ];
     }
 
-    public function cbs(): string
+    public function de(Tributo $tributo): Decimal
     {
-        return $this->cbs;
-    }
-
-    public function ibsUf(): string
-    {
-        return $this->ibsUf;
-    }
-
-    public function ibsMun(): string
-    {
-        return $this->ibsMun;
+        return $this->porTributo[$tributo->codigo()];
     }
 }

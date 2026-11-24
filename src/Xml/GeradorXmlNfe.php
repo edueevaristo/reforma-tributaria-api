@@ -9,7 +9,8 @@ use DOMElement;
 use DuNf\ReformaTributaria\Calculo\ResultadoItem;
 use DuNf\ReformaTributaria\Calculo\ResultadoTributo;
 use DuNf\ReformaTributaria\Calculo\TotaisIbsCbs;
-use DuNf\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Suporte\Decimal;
+use DuNf\ReformaTributaria\Tributo;
 
 /**
  * Gera os grupos IBSCBS (item, dentro de imposto) e IBSCBSTot (total) da NF-e e da NFC-e,
@@ -23,25 +24,40 @@ final class GeradorXmlNfe
     public const NAMESPACE_NFE = 'http://www.portalfiscal.inf.br/nfe';
 
     /**
+     * Valor dos campos de total que ainda nao sao calculados localmente
+     * (devolucao de tributos e credito presumido).
+     */
+    private const VALOR_NAO_CALCULADO = '0.00';
+
+    /** Tags de cada tributo: grupo do item, aliquota e valor. */
+    private const TAGS = [
+        'ibsUf' => ['grupo' => 'gIBSUF', 'aliquota' => 'pIBSUF', 'valor' => 'vIBSUF'],
+        'ibsMun' => ['grupo' => 'gIBSMun', 'aliquota' => 'pIBSMun', 'valor' => 'vIBSMun'],
+        'cbs' => ['grupo' => 'gCBS', 'aliquota' => 'pCBS', 'valor' => 'vCBS'],
+    ];
+
+    /**
      * Grupo det/imposto/IBSCBS.
      */
     public function grupoItem(ResultadoItem $item, DOMDocument $documento): DOMElement
     {
-        $ibscbs = $this->elemento($documento, 'IBSCBS');
-        $ibscbs->appendChild($this->elemento($documento, 'CST', $item->cst()));
-        $ibscbs->appendChild($this->elemento($documento, 'cClassTrib', $item->classificacaoTributaria()));
+        $construtor = new ConstrutorXml($documento, self::NAMESPACE_NFE);
+        $ibscbs = $construtor->grupo('IBSCBS', [
+            $construtor->campo('CST', $item->cst()),
+            $construtor->campo('cClassTrib', $item->classificacaoTributaria()),
+        ]);
 
         if (!$item->possuiGrupoIbsCbs()) {
             return $ibscbs;
         }
 
-        $grupo = $this->elemento($documento, 'gIBSCBS');
-        $grupo->appendChild($this->elemento($documento, 'vBC', (string) $item->baseCalculo()));
-        $grupo->appendChild($this->grupoTributo($documento, 'gIBSUF', 'pIBSUF', 'vIBSUF', $item->ibsUf()));
-        $grupo->appendChild($this->grupoTributo($documento, 'gIBSMun', 'pIBSMun', 'vIBSMun', $item->ibsMun()));
-        $grupo->appendChild($this->elemento($documento, 'vIBS', (string) $item->valorIbs()));
-        $grupo->appendChild($this->grupoTributo($documento, 'gCBS', 'pCBS', 'vCBS', $item->cbs()));
-        $ibscbs->appendChild($grupo);
+        $ibscbs->appendChild($construtor->grupo('gIBSCBS', [
+            $construtor->campo('vBC', (string) $item->baseCalculo()),
+            $this->grupoTributo($construtor, Tributo::ibsUf(), $item),
+            $this->grupoTributo($construtor, Tributo::ibsMun(), $item),
+            $construtor->campo('vIBS', (string) $item->valorIbs()),
+            $this->grupoTributo($construtor, Tributo::cbs(), $item),
+        ]));
 
         return $ibscbs;
     }
@@ -51,38 +67,23 @@ final class GeradorXmlNfe
      */
     public function grupoTotal(TotaisIbsCbs $totais, DOMDocument $documento): DOMElement
     {
-        $total = $this->elemento($documento, 'IBSCBSTot');
-        $total->appendChild($this->elemento($documento, 'vBCIBSCBS', $totais->baseCalculo()));
+        $construtor = new ConstrutorXml($documento, self::NAMESPACE_NFE);
+        $total = $construtor->grupo('IBSCBSTot', [$construtor->campo('vBCIBSCBS', $totais->baseCalculo())]);
 
         if (!$totais->possuiValores()) {
             return $total;
         }
 
-        $ibsUf = $this->elemento($documento, 'gIBSUF');
-        $ibsUf->appendChild($this->elemento($documento, 'vDif', $totais->diferimentoIbsUf()));
-        $ibsUf->appendChild($this->elemento($documento, 'vDevTrib', '0.00'));
-        $ibsUf->appendChild($this->elemento($documento, 'vIBSUF', $totais->ibsUf()));
-
-        $ibsMun = $this->elemento($documento, 'gIBSMun');
-        $ibsMun->appendChild($this->elemento($documento, 'vDif', $totais->diferimentoIbsMun()));
-        $ibsMun->appendChild($this->elemento($documento, 'vDevTrib', '0.00'));
-        $ibsMun->appendChild($this->elemento($documento, 'vIBSMun', $totais->ibsMun()));
-
-        $ibs = $this->elemento($documento, 'gIBS');
-        $ibs->appendChild($ibsUf);
-        $ibs->appendChild($ibsMun);
-        $ibs->appendChild($this->elemento($documento, 'vIBS', $totais->ibs()));
-        $ibs->appendChild($this->elemento($documento, 'vCredPres', '0.00'));
-        $ibs->appendChild($this->elemento($documento, 'vCredPresCondSus', '0.00'));
-        $total->appendChild($ibs);
-
-        $cbs = $this->elemento($documento, 'gCBS');
-        $cbs->appendChild($this->elemento($documento, 'vDif', $totais->diferimentoCbs()));
-        $cbs->appendChild($this->elemento($documento, 'vDevTrib', '0.00'));
-        $cbs->appendChild($this->elemento($documento, 'vCBS', $totais->cbs()));
-        $cbs->appendChild($this->elemento($documento, 'vCredPres', '0.00'));
-        $cbs->appendChild($this->elemento($documento, 'vCredPresCondSus', '0.00'));
-        $total->appendChild($cbs);
+        $total->appendChild($construtor->grupo('gIBS', [
+            $this->totalTributo($construtor, Tributo::ibsUf(), $totais),
+            $this->totalTributo($construtor, Tributo::ibsMun(), $totais),
+            $construtor->campo('vIBS', $totais->ibs()),
+            ...$this->creditoPresumido($construtor),
+        ]));
+        $total->appendChild($construtor->grupo('gCBS', [
+            ...$this->camposTotalTributo($construtor, Tributo::cbs(), $totais),
+            ...$this->creditoPresumido($construtor),
+        ]));
 
         return $total;
     }
@@ -103,49 +104,86 @@ final class GeradorXmlNfe
         return (string) $documento->saveXML($documento->documentElement);
     }
 
-    private function grupoTributo(
-        DOMDocument $documento,
-        string $nomeGrupo,
-        string $tagAliquota,
-        string $tagValor,
-        ResultadoTributo $tributo
-    ): DOMElement {
-        $grupo = $this->elemento($documento, $nomeGrupo);
-        $aliquota = Numero::formatarPercentual($tributo->aliquota());
-        $grupo->appendChild($this->elemento($documento, $tagAliquota, $aliquota));
+    /**
+     * Grupo gIBSUF, gIBSMun ou gCBS do item.
+     */
+    private function grupoTributo(ConstrutorXml $construtor, Tributo $tributo, ResultadoItem $item): DOMElement
+    {
+        $tags = self::TAGS[$tributo->codigo()];
+        $resultado = $item->tributo($tributo);
 
-        if ($tributo->percentualDiferimento() !== null) {
-            $diferimento = $this->elemento($documento, 'gDif');
-            $diferimento->appendChild(
-                $this->elemento($documento, 'pDif', Numero::formatarPercentual($tributo->percentualDiferimento()))
-            );
-            $diferimento->appendChild($this->elemento($documento, 'vDif', (string) $tributo->valorDiferimento()));
-            $grupo->appendChild($diferimento);
+        if ($resultado === null) {
+            throw new \LogicException(sprintf('Item %d sem o resultado de %s.', $item->numero(), $tributo->nome()));
         }
 
-        if ($tributo->percentualReducao() !== null) {
-            $reducao = $this->elemento($documento, 'gRed');
-            $reducao->appendChild(
-                $this->elemento($documento, 'pRedAliq', Numero::formatarPercentual($tributo->percentualReducao()))
-            );
-            $aliquotaEfetiva = Numero::formatarPercentual((string) $tributo->aliquotaEfetiva());
-            $reducao->appendChild($this->elemento($documento, 'pAliqEfet', $aliquotaEfetiva));
-            $grupo->appendChild($reducao);
-        }
-
-        $grupo->appendChild($this->elemento($documento, $tagValor, $tributo->valor()));
-
-        return $grupo;
+        return $construtor->grupo($tags['grupo'], [
+            $construtor->campo($tags['aliquota'], $this->percentual($resultado->aliquota())),
+            $this->grupoDiferimento($construtor, $resultado),
+            $this->grupoReducao($construtor, $resultado),
+            $construtor->campo($tags['valor'], $resultado->valor()),
+        ]);
     }
 
-    private function elemento(DOMDocument $documento, string $nome, ?string $valor = null): DOMElement
+    private function grupoDiferimento(ConstrutorXml $construtor, ResultadoTributo $resultado): ?DOMElement
     {
-        $elemento = $documento->createElementNS(self::NAMESPACE_NFE, $nome);
-
-        if ($valor !== null) {
-            $elemento->appendChild($documento->createTextNode($valor));
+        if (!$resultado->possuiDiferimento()) {
+            return null;
         }
 
-        return $elemento;
+        return $construtor->grupo('gDif', [
+            $construtor->campo('pDif', $this->percentual((string) $resultado->percentualDiferimento())),
+            $construtor->campo('vDif', (string) $resultado->valorDiferimento()),
+        ]);
+    }
+
+    private function grupoReducao(ConstrutorXml $construtor, ResultadoTributo $resultado): ?DOMElement
+    {
+        if (!$resultado->possuiReducao()) {
+            return null;
+        }
+
+        return $construtor->grupo('gRed', [
+            $construtor->campo('pRedAliq', $this->percentual((string) $resultado->percentualReducao())),
+            $construtor->campo('pAliqEfet', $this->percentual((string) $resultado->aliquotaEfetiva())),
+        ]);
+    }
+
+    /**
+     * Grupo gIBSUF ou gIBSMun do total.
+     */
+    private function totalTributo(ConstrutorXml $construtor, Tributo $tributo, TotaisIbsCbs $totais): DOMElement
+    {
+        return $construtor->grupo(
+            self::TAGS[$tributo->codigo()]['grupo'],
+            $this->camposTotalTributo($construtor, $tributo, $totais)
+        );
+    }
+
+    /**
+     * @return DOMElement[]
+     */
+    private function camposTotalTributo(ConstrutorXml $construtor, Tributo $tributo, TotaisIbsCbs $totais): array
+    {
+        return [
+            $construtor->campo('vDif', $totais->diferimento($tributo)),
+            $construtor->campo('vDevTrib', self::VALOR_NAO_CALCULADO),
+            $construtor->campo(self::TAGS[$tributo->codigo()]['valor'], $totais->valor($tributo)),
+        ];
+    }
+
+    /**
+     * @return DOMElement[]
+     */
+    private function creditoPresumido(ConstrutorXml $construtor): array
+    {
+        return [
+            $construtor->campo('vCredPres', self::VALOR_NAO_CALCULADO),
+            $construtor->campo('vCredPresCondSus', self::VALOR_NAO_CALCULADO),
+        ];
+    }
+
+    private function percentual(string $valor): string
+    {
+        return Decimal::de($valor)->percentualXml();
     }
 }

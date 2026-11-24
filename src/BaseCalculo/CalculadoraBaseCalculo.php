@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DuNf\ReformaTributaria\BaseCalculo;
 
 use DuNf\ReformaTributaria\Excecao\DadoInvalidoException;
-use DuNf\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Suporte\Decimal;
 
 /**
  * Base de calculo unificada da NF-e e da NFC-e (regime regular, Imposto Seletivo e Simples Nacional).
@@ -15,106 +15,79 @@ use DuNf\ReformaTributaria\Suporte\Numero;
  */
 final class CalculadoraBaseCalculo
 {
-    public const NATUREZA_BEM = 'bem';
-    public const NATUREZA_SERVICO = 'servico';
-
-    public const MODELO_NFE = 55;
-    public const MODELO_NFCE = 65;
-
-    /** @var array<string, array<string, mixed>> */
-    private array $regras;
+    /** @var array<string, RegraComponente> */
+    private array $regras = [];
 
     /**
      * @param array<string, array<string, mixed>>|null $regras Use null para carregar as regras oficiais do pacote.
      */
     public function __construct(?array $regras = null)
     {
-        $this->regras = $regras ?? require __DIR__ . '/../../resources/regras/base-calculo.php';
+        $regras ??= require __DIR__ . '/../../resources/regras/base-calculo.php';
+
+        foreach ($regras as $tag => $regra) {
+            $this->regras[$tag] = new RegraComponente($tag, $regra);
+        }
     }
 
     public function calcular(
         ComponentesBaseCalculo $componentes,
         int $ano,
-        string $natureza,
-        int $modelo
+        Natureza $natureza,
+        ModeloDocumento $modelo
     ): ResultadoBaseCalculo {
-        if (!in_array($natureza, [self::NATUREZA_BEM, self::NATUREZA_SERVICO], true)) {
-            throw new DadoInvalidoException('Natureza deve ser "bem" ou "servico".');
+        $this->garantirComponentesConhecidos($componentes);
+
+        $informados = $this->valoresInformados($componentes);
+        $motivosExclusao = $this->motivosExclusao($informados, $ano, $natureza, $modelo);
+        $bases = Bases::zeradas();
+
+        foreach (array_diff_key($informados, $motivosExclusao) as $tag => $valor) {
+            $bases = $this->regras[$tag]->aplicar($bases, $valor);
         }
 
-        if (!in_array($modelo, [self::MODELO_NFE, self::MODELO_NFCE], true)) {
-            throw new DadoInvalidoException('Modelo de documento deve ser 55 (NF-e) ou 65 (NFC-e).');
-        }
-
-        foreach ($componentes->tags() as $tag) {
-            if (!isset($this->regras[$tag])) {
-                throw new DadoInvalidoException(sprintf('Componente de base de calculo desconhecido: %s.', $tag));
-            }
-        }
-
-        $bases = ['RG' => '0', 'IS' => '0', 'SN' => '0'];
-        $avisos = [];
-
-        foreach ($this->regras as $tag => $regra) {
-            $valor = $componentes->valor($tag);
-            if (Numero::comparar($valor, '0') === 0) {
-                continue;
-            }
-
-            $motivo = $this->motivoNaoComposicao($tag, $regra, $ano, $natureza, $modelo);
-            if ($motivo !== null) {
-                $avisos[] = $motivo;
-                continue;
-            }
-
-            foreach ($regra['bases'] as $base) {
-                $bases[$base] = $regra['operacao'] === 'soma'
-                    ? Numero::somar($bases[$base], $valor)
-                    : Numero::subtrair($bases[$base], $valor);
-            }
-        }
-
-        return new ResultadoBaseCalculo(
-            Numero::valorFiscal($bases['RG']),
-            Numero::valorFiscal($bases['IS']),
-            Numero::valorFiscal($bases['SN']),
-            $avisos
-        );
+        return $bases->publicar(array_values($motivosExclusao));
     }
 
     /**
-     * @param array<string, mixed> $regra
+     * Valores diferentes de zero, na ordem das regras.
+     *
+     * @return array<string, Decimal>
      */
-    private function motivoNaoComposicao(string $tag, array $regra, int $ano, string $natureza, int $modelo): ?string
+    private function valoresInformados(ComponentesBaseCalculo $componentes): array
     {
-        list($inicio, $fim) = $regra['vigencia'];
-        if ($ano < $inicio || $ano > $fim) {
-            return sprintf(
-                'Campo %s nao compoe as bases para o ano %d (vigencia %d-%d) e foi ignorado no calculo',
-                $tag,
-                $ano,
-                $inicio,
-                $fim
-            );
+        $valores = array_map(
+            static fn (RegraComponente $regra): Decimal => Decimal::de($componentes->valor($regra->tag())),
+            $this->regras
+        );
+
+        return array_filter($valores, static fn (Decimal $valor): bool => !$valor->ehZero());
+    }
+
+    /**
+     * Motivo de exclusao de cada componente que nao entra nas bases, indexado pela tag.
+     *
+     * @param array<string, Decimal> $informados
+     * @return array<string, string>
+     */
+    private function motivosExclusao(array $informados, int $ano, Natureza $natureza, ModeloDocumento $modelo): array
+    {
+        $motivos = [];
+        foreach (array_keys($informados) as $tag) {
+            $motivos[$tag] = $this->regras[$tag]->motivoExclusao($ano, $natureza, $modelo);
         }
 
-        if ($regra['natureza'] !== null && $regra['natureza'] !== $natureza) {
-            return sprintf(
-                'Campo %s nao compoe as bases para a natureza %s (aplicavel apenas a %s) e foi ignorado no calculo',
-                $tag,
-                $natureza,
-                $regra['natureza']
+        return array_filter($motivos, static fn (?string $motivo): bool => $motivo !== null);
+    }
+
+    private function garantirComponentesConhecidos(ComponentesBaseCalculo $componentes): void
+    {
+        $desconhecidos = array_diff($componentes->tags(), array_keys($this->regras));
+
+        if ($desconhecidos !== []) {
+            throw new DadoInvalidoException(
+                sprintf('Componente de base de calculo desconhecido: %s.', reset($desconhecidos))
             );
         }
-
-        if (!in_array($modelo, $regra['modelos'], true)) {
-            return sprintf(
-                'Campo %s nao compoe as bases para o documento modelo %d e foi ignorado no calculo',
-                $tag,
-                $modelo
-            );
-        }
-
-        return null;
     }
 }
