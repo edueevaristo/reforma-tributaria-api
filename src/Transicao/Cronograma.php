@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Transicao;
+namespace DuNf\ReformaTributaria\Transicao;
 
-use EduardoEvaristo\ReformaTributaria\Excecao\RegraNaoEncontradaException;
+use DuNf\ReformaTributaria\Excecao\RegraNaoEncontradaException;
 
 /**
  * Cronograma de transicao 2026-2033.

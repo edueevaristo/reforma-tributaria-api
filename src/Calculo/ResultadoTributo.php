@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Calculo;
+namespace DuNf\ReformaTributaria\Calculo;
 
 /**
  * Resultado de um tributo do item (IBS UF, IBS municipal ou CBS), com os valores ja publicados.

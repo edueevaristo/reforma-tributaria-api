@@ -52,7 +52,7 @@ Os valores da resposta de `/regime-geral` são os mesmos que a biblioteca calcul
 Uso com a biblioteca:
 
 ```php
-use EduardoEvaristo\ReformaTributaria\CalculadoraOficial\Cliente;
+use DuNf\ReformaTributaria\CalculadoraOficial\Cliente;
 
 $cliente = new Cliente('http://localhost:8089/api/calculadora');
 $resultado = $cliente->calcularRegimeGeral($operacao);

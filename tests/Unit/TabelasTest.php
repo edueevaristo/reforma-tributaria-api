@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tests\Unit;
+namespace DuNf\ReformaTributaria\Tests\Unit;
 
-use EduardoEvaristo\ReformaTributaria\Excecao\RegraNaoEncontradaException;
-use EduardoEvaristo\ReformaTributaria\Tabelas\TabelaClassificacaoTributaria;
-use EduardoEvaristo\ReformaTributaria\Tabelas\TabelaSituacaoTributaria;
+use DuNf\ReformaTributaria\Excecao\RegraNaoEncontradaException;
+use DuNf\ReformaTributaria\Tabelas\TabelaClassificacaoTributaria;
+use DuNf\ReformaTributaria\Tabelas\TabelaSituacaoTributaria;
 use PHPUnit\Framework\TestCase;
 
 final class TabelasTest extends TestCase

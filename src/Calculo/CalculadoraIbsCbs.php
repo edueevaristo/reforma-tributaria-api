@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Calculo;
+namespace DuNf\ReformaTributaria\Calculo;
 
-use EduardoEvaristo\ReformaTributaria\Excecao\DadoInvalidoException;
-use EduardoEvaristo\ReformaTributaria\Excecao\OperacaoNaoSuportadaException;
-use EduardoEvaristo\ReformaTributaria\Suporte\Numero;
-use EduardoEvaristo\ReformaTributaria\Tabelas\ClassificacaoTributaria;
-use EduardoEvaristo\ReformaTributaria\Tabelas\SituacaoTributaria;
-use EduardoEvaristo\ReformaTributaria\Tabelas\TabelaClassificacaoTributaria;
-use EduardoEvaristo\ReformaTributaria\Tabelas\TabelaSituacaoTributaria;
-use EduardoEvaristo\ReformaTributaria\Transicao\AnoTransicao;
-use EduardoEvaristo\ReformaTributaria\Transicao\Cronograma;
+use DuNf\ReformaTributaria\Excecao\DadoInvalidoException;
+use DuNf\ReformaTributaria\Excecao\OperacaoNaoSuportadaException;
+use DuNf\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Tabelas\ClassificacaoTributaria;
+use DuNf\ReformaTributaria\Tabelas\SituacaoTributaria;
+use DuNf\ReformaTributaria\Tabelas\TabelaClassificacaoTributaria;
+use DuNf\ReformaTributaria\Tabelas\TabelaSituacaoTributaria;
+use DuNf\ReformaTributaria\Transicao\AnoTransicao;
+use DuNf\ReformaTributaria\Transicao\Cronograma;
 
 /**
  * Calculo local do IBS e da CBS por item, no regime regular.

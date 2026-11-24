@@ -34,24 +34,47 @@ Compatível com **PHP 7.4 até 8.5**.
 
 Requisitos: PHP 7.4 ou superior com as extensões `bcmath`, `dom` e `json`. A extensão `curl` só é necessária para usar o cliente da calculadora oficial.
 
-O pacote está publicado no [Packagist](https://packagist.org/packages/edueevaristo/reforma-tributaria-api):
+O pacote está publicado no [Packagist](https://packagist.org/packages/du-nf/reforma-tributaria):
 
 ```bash
-composer require edueevaristo/reforma-tributaria-api
+composer require du-nf/reforma-tributaria
 ```
 
-Enquanto a primeira versão (tag `v0.1.0`) não estiver publicada no GitHub, o Composer só encontra a versão em desenvolvimento da `main`. Nesse caso, ou para testar o que ainda não saiu em versão:
+Para testar o que ainda não saiu em versão, use a `main`:
 
 ```bash
-composer require edueevaristo/reforma-tributaria-api:dev-main
+composer require du-nf/reforma-tributaria:dev-main
 ```
+
+### Migrando de `edueevaristo/reforma-tributaria-api`
+
+A partir da versão 0.3.0 o pacote mudou de nome e de namespace. O pacote antigo `edueevaristo/reforma-tributaria-api` foi descontinuado e não recebe novas versões.
+
+1. Troque o pacote no Composer:
+
+   ```bash
+   composer remove edueevaristo/reforma-tributaria-api
+   composer require du-nf/reforma-tributaria
+   ```
+
+2. Troque o namespace no seu código, de `EduardoEvaristo\ReformaTributaria` para `DuNf\ReformaTributaria`:
+
+   ```php
+   // antes
+   use EduardoEvaristo\ReformaTributaria\Transicao\Cronograma;
+
+   // depois
+   use DuNf\ReformaTributaria\Transicao\Cronograma;
+   ```
+
+   Nenhuma classe ou método mudou de nome; só o prefixo do namespace.
 
 ## Uso
 
 ### Cronograma de transição
 
 ```php
-use EduardoEvaristo\ReformaTributaria\Transicao\Cronograma;
+use DuNf\ReformaTributaria\Transicao\Cronograma;
 
 $ano = (new Cronograma())->ano(2027);
 
@@ -67,8 +90,8 @@ $ano->fundamentoLegal();            // ['LC 214/2025, art. 344', 'LC 214/2025, a
 ### Base de cálculo
 
 ```php
-use EduardoEvaristo\ReformaTributaria\BaseCalculo\CalculadoraBaseCalculo;
-use EduardoEvaristo\ReformaTributaria\BaseCalculo\ComponentesBaseCalculo;
+use DuNf\ReformaTributaria\BaseCalculo\CalculadoraBaseCalculo;
+use DuNf\ReformaTributaria\BaseCalculo\ComponentesBaseCalculo;
 
 $base = (new CalculadoraBaseCalculo())->calcular(
     new ComponentesBaseCalculo([
@@ -91,9 +114,9 @@ $base->avisos();              // componentes ignorados no ano, natureza ou model
 ### Cálculo do IBS e da CBS
 
 ```php
-use EduardoEvaristo\ReformaTributaria\Calculo\Aliquotas;
-use EduardoEvaristo\ReformaTributaria\Calculo\CalculadoraIbsCbs;
-use EduardoEvaristo\ReformaTributaria\Calculo\ItemIbsCbs;
+use DuNf\ReformaTributaria\Calculo\Aliquotas;
+use DuNf\ReformaTributaria\Calculo\CalculadoraIbsCbs;
+use DuNf\ReformaTributaria\Calculo\ItemIbsCbs;
 
 $calculadora = new CalculadoraIbsCbs();
 
@@ -119,7 +142,7 @@ Regra das alíquotas: a alíquota informada em `Aliquotas` tem prioridade. Quand
 ### Grupos XML da NF-e/NFC-e
 
 ```php
-use EduardoEvaristo\ReformaTributaria\Xml\GeradorXmlNfe;
+use DuNf\ReformaTributaria\Xml\GeradorXmlNfe;
 
 $gerador = new GeradorXmlNfe();
 
@@ -150,8 +173,8 @@ Exemplo de saída (`php exemplos/nfe-2026.php`):
 ### Tabelas de CST e cClassTrib
 
 ```php
-use EduardoEvaristo\ReformaTributaria\Tabelas\TabelaClassificacaoTributaria;
-use EduardoEvaristo\ReformaTributaria\Tabelas\TabelaSituacaoTributaria;
+use DuNf\ReformaTributaria\Tabelas\TabelaClassificacaoTributaria;
+use DuNf\ReformaTributaria\Tabelas\TabelaSituacaoTributaria;
 
 $data = new DateTimeImmutable('2027-01-01');
 
@@ -170,7 +193,7 @@ $cst->exigeGrupo('gRed'); // true
 Para os casos que ainda não são calculados localmente, rode a [calculadora oficial](https://github.com/ReceitaFederal/calculadora-rtc-regime-regular) no seu ambiente e use o cliente:
 
 ```php
-use EduardoEvaristo\ReformaTributaria\CalculadoraOficial\Cliente;
+use DuNf\ReformaTributaria\CalculadoraOficial\Cliente;
 
 $cliente = new Cliente('http://localhost:8080/api/calculadora');
 

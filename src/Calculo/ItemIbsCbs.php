@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Calculo;
+namespace DuNf\ReformaTributaria\Calculo;
 
-use EduardoEvaristo\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Suporte\Numero;
 
 /**
  * Dados de entrada de um item do documento fiscal.

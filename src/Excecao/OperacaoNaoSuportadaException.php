@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Excecao;
+namespace DuNf\ReformaTributaria\Excecao;
 
 /**
  * A operacao existe na legislacao, mas ainda nao e calculada localmente por esta biblioteca.

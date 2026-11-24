@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Calculo;
+namespace DuNf\ReformaTributaria\Calculo;
 
 /**
  * Resultado do calculo de um item. Os tributos sao null quando o CST nao tem o grupo gIBSCBS

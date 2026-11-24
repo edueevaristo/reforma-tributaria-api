@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Calculo;
+namespace DuNf\ReformaTributaria\Calculo;
 
 /**
  * Totais do grupo IBSCBSTot (W03). Cada total e a soma dos valores publicados nos itens,

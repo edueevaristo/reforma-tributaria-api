@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\BaseCalculo;
+namespace DuNf\ReformaTributaria\BaseCalculo;
 
-use EduardoEvaristo\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Suporte\Numero;
 
 /**
  * Valores do item usados na base de calculo, com o nome das tags da NF-e.

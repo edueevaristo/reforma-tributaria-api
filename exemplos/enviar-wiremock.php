@@ -14,7 +14,7 @@
 
 declare(strict_types=1);
 
-use EduardoEvaristo\ReformaTributaria\CalculadoraOficial\TransporteCurl;
+use DuNf\ReformaTributaria\CalculadoraOficial\TransporteCurl;
 
 require __DIR__ . '/../vendor/autoload.php';
 

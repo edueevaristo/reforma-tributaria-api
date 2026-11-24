@@ -4,6 +4,13 @@ Todas as mudanças relevantes deste projeto. O formato segue o [Keep a Changelog
 
 ## [Não publicado]
 
+## [0.3.0] - 2026-11-23
+
+### Alterado
+
+- **Quebra de compatibilidade:** o pacote passa a se chamar `du-nf/reforma-tributaria` no Packagist (antes `edueevaristo/reforma-tributaria-api`).
+- **Quebra de compatibilidade:** o namespace passa a ser `DuNf\ReformaTributaria` (antes `EduardoEvaristo\ReformaTributaria`). Nenhuma classe ou método mudou de nome. Veja a seção "Migrando" do README.
+
 ## [0.2.0] - 2026-11-23
 
 ### Adicionado

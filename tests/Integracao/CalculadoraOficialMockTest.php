@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tests\Integracao;
+namespace DuNf\ReformaTributaria\Tests\Integracao;
 
-use EduardoEvaristo\ReformaTributaria\CalculadoraOficial\Cliente;
-use EduardoEvaristo\ReformaTributaria\Calculo\CalculadoraIbsCbs;
-use EduardoEvaristo\ReformaTributaria\Calculo\ItemIbsCbs;
-use EduardoEvaristo\ReformaTributaria\Excecao\ErroCalculadoraOficialException;
+use DuNf\ReformaTributaria\CalculadoraOficial\Cliente;
+use DuNf\ReformaTributaria\Calculo\CalculadoraIbsCbs;
+use DuNf\ReformaTributaria\Calculo\ItemIbsCbs;
+use DuNf\ReformaTributaria\Excecao\ErroCalculadoraOficialException;
 
 final class CalculadoraOficialMockTest extends WireMockTestCase
 {

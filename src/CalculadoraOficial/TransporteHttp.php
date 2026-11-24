@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\CalculadoraOficial;
+namespace DuNf\ReformaTributaria\CalculadoraOficial;
 
 /**
  * Contrato de transporte HTTP. Implemente para usar Guzzle, Symfony HttpClient ou o cliente HTTP do seu projeto.

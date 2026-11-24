@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tests\Integracao;
+namespace DuNf\ReformaTributaria\Tests\Integracao;
 
 use DOMDocument;
 use DOMXPath;
-use EduardoEvaristo\ReformaTributaria\CalculadoraOficial\RespostaHttp;
-use EduardoEvaristo\ReformaTributaria\CalculadoraOficial\TransporteCurl;
+use DuNf\ReformaTributaria\CalculadoraOficial\RespostaHttp;
+use DuNf\ReformaTributaria\CalculadoraOficial\TransporteCurl;
 
 /**
  * Baixa os XML de exemplo servidos pelo WireMock e envia cada um para a SEFAZ simulada.

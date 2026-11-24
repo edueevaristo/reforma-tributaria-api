@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tabelas;
+namespace DuNf\ReformaTributaria\Tabelas;
 
-use EduardoEvaristo\ReformaTributaria\Excecao\RegraNaoEncontradaException;
+use DuNf\ReformaTributaria\Excecao\RegraNaoEncontradaException;
 
 /**
  * Tabela de CST do IBS e da CBS (resources/dados/cst-ibs-cbs.json).

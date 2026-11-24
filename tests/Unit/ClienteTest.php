@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tests\Unit;
+namespace DuNf\ReformaTributaria\Tests\Unit;
 
-use EduardoEvaristo\ReformaTributaria\CalculadoraOficial\Cliente;
-use EduardoEvaristo\ReformaTributaria\CalculadoraOficial\RespostaHttp;
-use EduardoEvaristo\ReformaTributaria\Excecao\ErroCalculadoraOficialException;
-use EduardoEvaristo\ReformaTributaria\Tests\Apoio\TransporteFalso;
+use DuNf\ReformaTributaria\CalculadoraOficial\Cliente;
+use DuNf\ReformaTributaria\CalculadoraOficial\RespostaHttp;
+use DuNf\ReformaTributaria\Excecao\ErroCalculadoraOficialException;
+use DuNf\ReformaTributaria\Tests\Apoio\TransporteFalso;
 use PHPUnit\Framework\TestCase;
 
 final class ClienteTest extends TestCase

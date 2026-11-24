@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tests\Integracao;
+namespace DuNf\ReformaTributaria\Tests\Integracao;
 
 use DOMDocument;
 use DOMXPath;
-use EduardoEvaristo\ReformaTributaria\CalculadoraOficial\RespostaHttp;
-use EduardoEvaristo\ReformaTributaria\CalculadoraOficial\TransporteCurl;
-use EduardoEvaristo\ReformaTributaria\Calculo\CalculadoraIbsCbs;
-use EduardoEvaristo\ReformaTributaria\Calculo\ItemIbsCbs;
-use EduardoEvaristo\ReformaTributaria\Xml\GeradorXmlNfe;
+use DuNf\ReformaTributaria\CalculadoraOficial\RespostaHttp;
+use DuNf\ReformaTributaria\CalculadoraOficial\TransporteCurl;
+use DuNf\ReformaTributaria\Calculo\CalculadoraIbsCbs;
+use DuNf\ReformaTributaria\Calculo\ItemIbsCbs;
+use DuNf\ReformaTributaria\Xml\GeradorXmlNfe;
 
 final class SefazNfeMockTest extends WireMockTestCase
 {

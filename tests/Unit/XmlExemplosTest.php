@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tests\Unit;
+namespace DuNf\ReformaTributaria\Tests\Unit;
 
 use DOMDocument;
 use DOMXPath;

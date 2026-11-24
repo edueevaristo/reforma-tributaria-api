@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tabelas;
+namespace DuNf\ReformaTributaria\Tabelas;
 
 /**
  * Classificacao tributaria (cClassTrib) do IBS e da CBS.

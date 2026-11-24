@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Xml;
+namespace DuNf\ReformaTributaria\Xml;
 
 use DOMDocument;
 use DOMElement;
-use EduardoEvaristo\ReformaTributaria\Calculo\ResultadoItem;
-use EduardoEvaristo\ReformaTributaria\Calculo\ResultadoTributo;
-use EduardoEvaristo\ReformaTributaria\Calculo\TotaisIbsCbs;
-use EduardoEvaristo\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Calculo\ResultadoItem;
+use DuNf\ReformaTributaria\Calculo\ResultadoTributo;
+use DuNf\ReformaTributaria\Calculo\TotaisIbsCbs;
+use DuNf\ReformaTributaria\Suporte\Numero;
 
 /**
  * Gera os grupos IBSCBS (item, dentro de imposto) e IBSCBSTot (total) da NF-e e da NFC-e,

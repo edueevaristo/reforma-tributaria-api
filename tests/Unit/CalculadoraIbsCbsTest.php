@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tests\Unit;
+namespace DuNf\ReformaTributaria\Tests\Unit;
 
-use EduardoEvaristo\ReformaTributaria\Calculo\Aliquotas;
-use EduardoEvaristo\ReformaTributaria\Calculo\CalculadoraIbsCbs;
-use EduardoEvaristo\ReformaTributaria\Calculo\Diferimento;
-use EduardoEvaristo\ReformaTributaria\Calculo\ItemIbsCbs;
-use EduardoEvaristo\ReformaTributaria\Excecao\DadoInvalidoException;
-use EduardoEvaristo\ReformaTributaria\Excecao\OperacaoNaoSuportadaException;
+use DuNf\ReformaTributaria\Calculo\Aliquotas;
+use DuNf\ReformaTributaria\Calculo\CalculadoraIbsCbs;
+use DuNf\ReformaTributaria\Calculo\Diferimento;
+use DuNf\ReformaTributaria\Calculo\ItemIbsCbs;
+use DuNf\ReformaTributaria\Excecao\DadoInvalidoException;
+use DuNf\ReformaTributaria\Excecao\OperacaoNaoSuportadaException;
 use PHPUnit\Framework\TestCase;
 
 final class CalculadoraIbsCbsTest extends TestCase

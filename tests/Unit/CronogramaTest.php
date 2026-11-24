@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tests\Unit;
+namespace DuNf\ReformaTributaria\Tests\Unit;
 
-use EduardoEvaristo\ReformaTributaria\Excecao\RegraNaoEncontradaException;
-use EduardoEvaristo\ReformaTributaria\Transicao\Cronograma;
+use DuNf\ReformaTributaria\Excecao\RegraNaoEncontradaException;
+use DuNf\ReformaTributaria\Transicao\Cronograma;
 use PHPUnit\Framework\TestCase;
 
 final class CronogramaTest extends TestCase

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\CalculadoraOficial;
+namespace DuNf\ReformaTributaria\CalculadoraOficial;
 
-use EduardoEvaristo\ReformaTributaria\Excecao\ErroCalculadoraOficialException;
+use DuNf\ReformaTributaria\Excecao\ErroCalculadoraOficialException;
 
 /**
  * Transporte HTTP padrao, com ext-curl.

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\BaseCalculo;
+namespace DuNf\ReformaTributaria\BaseCalculo;
 
 /**
  * Bases de calculo publicadas (2 casas, HALF_EVEN) e avisos de componentes ignorados.

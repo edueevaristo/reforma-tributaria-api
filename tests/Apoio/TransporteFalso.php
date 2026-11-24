@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tests\Apoio;
+namespace DuNf\ReformaTributaria\Tests\Apoio;
 
-use EduardoEvaristo\ReformaTributaria\CalculadoraOficial\RespostaHttp;
-use EduardoEvaristo\ReformaTributaria\CalculadoraOficial\TransporteHttp;
+use DuNf\ReformaTributaria\CalculadoraOficial\RespostaHttp;
+use DuNf\ReformaTributaria\CalculadoraOficial\TransporteHttp;
 
 /**
  * Transporte HTTP que guarda a requisicao e devolve uma resposta fixa.

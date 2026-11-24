@@ -17,12 +17,12 @@
 
 declare(strict_types=1);
 
-use EduardoEvaristo\ReformaTributaria\BaseCalculo\CalculadoraBaseCalculo;
-use EduardoEvaristo\ReformaTributaria\BaseCalculo\ComponentesBaseCalculo;
-use EduardoEvaristo\ReformaTributaria\Calculo\CalculadoraIbsCbs;
-use EduardoEvaristo\ReformaTributaria\Calculo\ItemIbsCbs;
-use EduardoEvaristo\ReformaTributaria\Suporte\Numero;
-use EduardoEvaristo\ReformaTributaria\Xml\GeradorXmlNfe;
+use DuNf\ReformaTributaria\BaseCalculo\CalculadoraBaseCalculo;
+use DuNf\ReformaTributaria\BaseCalculo\ComponentesBaseCalculo;
+use DuNf\ReformaTributaria\Calculo\CalculadoraIbsCbs;
+use DuNf\ReformaTributaria\Calculo\ItemIbsCbs;
+use DuNf\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Xml\GeradorXmlNfe;
 
 require __DIR__ . '/../vendor/autoload.php';
 

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tabelas;
+namespace DuNf\ReformaTributaria\Tabelas;
 
-use EduardoEvaristo\ReformaTributaria\Excecao\DadoInvalidoException;
+use DuNf\ReformaTributaria\Excecao\DadoInvalidoException;
 
 /**
  * Le os arquivos JSON de resources/dados.

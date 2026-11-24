@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Excecao;
+namespace DuNf\ReformaTributaria\Excecao;
 
 /**
  * Excecao base da biblioteca. Capture esta classe para tratar qualquer erro do pacote.

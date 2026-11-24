@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tests\Unit;
+namespace DuNf\ReformaTributaria\Tests\Unit;
 
-use EduardoEvaristo\ReformaTributaria\Excecao\DadoInvalidoException;
-use EduardoEvaristo\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Excecao\DadoInvalidoException;
+use DuNf\ReformaTributaria\Suporte\Numero;
 use PHPUnit\Framework\TestCase;
 
 final class NumeroTest extends TestCase

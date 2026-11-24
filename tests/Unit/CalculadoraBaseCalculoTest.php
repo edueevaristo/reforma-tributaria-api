@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tests\Unit;
+namespace DuNf\ReformaTributaria\Tests\Unit;
 
-use EduardoEvaristo\ReformaTributaria\BaseCalculo\CalculadoraBaseCalculo;
-use EduardoEvaristo\ReformaTributaria\BaseCalculo\ComponentesBaseCalculo;
-use EduardoEvaristo\ReformaTributaria\Excecao\DadoInvalidoException;
+use DuNf\ReformaTributaria\BaseCalculo\CalculadoraBaseCalculo;
+use DuNf\ReformaTributaria\BaseCalculo\ComponentesBaseCalculo;
+use DuNf\ReformaTributaria\Excecao\DadoInvalidoException;
 use PHPUnit\Framework\TestCase;
 
 final class CalculadoraBaseCalculoTest extends TestCase

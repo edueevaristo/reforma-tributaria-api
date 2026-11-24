@@ -1,5 +1,5 @@
 {
-    "name": "edueevaristo/reforma-tributaria-api",
+    "name": "du-nf/reforma-tributaria",
     "description": "Biblioteca PHP open source para a Reforma Tributaria do Consumo (IBS, CBS e IS): cronograma de transicao, base de calculo, tabelas de CST e cClassTrib, calculo, grupos XML da NF-e/NFC-e e cliente da Calculadora de Tributos oficial da Receita Federal.",
     "type": "library",
     "license": "MIT",
@@ -29,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "EduardoEvaristo\\ReformaTributaria\\": "src/"
+            "DuNf\\ReformaTributaria\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "EduardoEvaristo\\ReformaTributaria\\Tests\\": "tests/"
+            "DuNf\\ReformaTributaria\\Tests\\": "tests/"
         }
     },
     "scripts": {

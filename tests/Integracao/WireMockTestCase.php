@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Tests\Integracao;
+namespace DuNf\ReformaTributaria\Tests\Integracao;
 
 use PHPUnit\Framework\TestCase;
 

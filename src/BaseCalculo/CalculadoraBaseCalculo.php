@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\BaseCalculo;
+namespace DuNf\ReformaTributaria\BaseCalculo;
 
-use EduardoEvaristo\ReformaTributaria\Excecao\DadoInvalidoException;
-use EduardoEvaristo\ReformaTributaria\Suporte\Numero;
+use DuNf\ReformaTributaria\Excecao\DadoInvalidoException;
+use DuNf\ReformaTributaria\Suporte\Numero;
 
 /**
  * Base de calculo unificada da NF-e e da NFC-e (regime regular, Imposto Seletivo e Simples Nacional).

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\CalculadoraOficial;
+namespace DuNf\ReformaTributaria\CalculadoraOficial;
 
 final class RespostaHttp
 {

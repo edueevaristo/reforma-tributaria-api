@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Excecao;
+namespace DuNf\ReformaTributaria\Excecao;
 
 /**
  * A Calculadora de Tributos oficial respondeu com erro ou nao pode ser acessada.

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Suporte;
+namespace DuNf\ReformaTributaria\Suporte;
 
-use EduardoEvaristo\ReformaTributaria\Excecao\DadoInvalidoException;
+use DuNf\ReformaTributaria\Excecao\DadoInvalidoException;
 
 /**
  * Aritmetica decimal exata com bcmath.

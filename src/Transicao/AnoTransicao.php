@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace EduardoEvaristo\ReformaTributaria\Transicao;
+namespace DuNf\ReformaTributaria\Transicao;
 
 /**
  * Regras de um ano do cronograma de transicao.
