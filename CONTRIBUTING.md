@@ -116,5 +116,6 @@ Detalhes dos mocks e como criar cenários novos: [docs/wiremock.md](docs/wiremoc
 ## Publicar uma versão (mantenedor)
 
 1. Atualize o `CHANGELOG.md`, movendo os itens de "Não publicado" para a versão nova.
-2. Crie a tag e envie: `git tag -a v0.2.0 -m "v0.2.0" && git push origin v0.2.0`.
-3. O Packagist lê a tag pelo webhook do GitHub. Se o webhook não estiver configurado, clique em **Update** na página do pacote.
+2. Crie a tag e envie: `git tag -a vX.Y.Z -m "vX.Y.Z" && git push origin vX.Y.Z`.
+3. O Packagist lê a tag pelo webhook do GitHub e publica a versão em [du-nf/reforma-tributaria](https://packagist.org/packages/du-nf/reforma-tributaria). Se a versão não aparecer em alguns minutos, clique em **Update** na página do pacote.
+4. Confira se o CI da tag passou na aba **Actions** do GitHub.

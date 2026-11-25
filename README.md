@@ -1,5 +1,10 @@
 # Reforma Tributária API (PHP)
 
+[![CI](https://github.com/edueevaristo/reforma-tributaria-api/actions/workflows/ci.yml/badge.svg)](https://github.com/edueevaristo/reforma-tributaria-api/actions/workflows/ci.yml)
+[![Packagist](https://img.shields.io/packagist/v/du-nf/reforma-tributaria)](https://packagist.org/packages/du-nf/reforma-tributaria)
+[![PHP](https://img.shields.io/packagist/php-v/du-nf/reforma-tributaria)](https://packagist.org/packages/du-nf/reforma-tributaria)
+[![Licença](https://img.shields.io/packagist/l/du-nf/reforma-tributaria)](LICENSE)
+
 Biblioteca PHP open source para sistemas que emitem documentos fiscais durante a transição da Reforma Tributária do Consumo (EC 132/2023 e LC 214/2025).
 
 Ela resolve, em PHP puro e sem dependências externas:
